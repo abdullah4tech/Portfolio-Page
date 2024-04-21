@@ -42,11 +42,14 @@
 
 .container {
   display: flex;
-  flex-shrink: 0;
-  flex-grow: 1;
   justify-content: center;
   align-items: center;
   margin-top: 0px;
+  width: 80em;
+}
+
+.content{
+  flex-shrink: 1;
 }
 
 .container .content h4{
