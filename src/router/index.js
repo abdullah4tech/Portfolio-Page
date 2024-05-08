@@ -1,6 +1,7 @@
 import { createRouter, createWebHistory } from 'vue-router';
 import AboutPage from '@/components/AboutPage.vue';
 import HeroSection from '@/components/HeroSection.vue';
+import NotFound from '@/components/NotFound.vue';
 
 const routes = [
   {
@@ -27,6 +28,11 @@ const routes = [
     path: '/contact',
     name: 'Contact',
     component: () => import('@/components/ContactPage.vue')
+  },
+  { 
+    path: '/:catchAll(.*)', 
+    name: '404',
+    component: NotFound
   }
 ];
 
