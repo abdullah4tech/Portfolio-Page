@@ -30,16 +30,6 @@
     z-index: -100;
 }
 
-/* .container {
-    position: relative;
-    padding: 2rem;
-    display: grid;
-    grid-template-columns: repeat(2, 1fr);
-    align-items: center;
-    gap: 2rem;
-    padding-left: 80px;
-} */
-
 .container {
   display: flex;
   justify-content: center;
