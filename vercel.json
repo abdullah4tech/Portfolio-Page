@@ -2,7 +2,7 @@
     "routes": [
       { "handle": "filesystem" },
       {
-        "src": "@/(.*)",
+        "src": "/(.*)",
         "status": 404,
         "dest": "@/src/components/NotFound.vue"
       }
