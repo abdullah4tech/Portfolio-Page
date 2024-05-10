@@ -20,14 +20,15 @@
 <style scoped>
 .content {
     max-width: 1200px;
-    margin: auto;
-    padding: 5rem;
+    padding: 3.5rem;
+    flex-shrink: 1;
+    margin-top: 0;
 }
 
 .blur {
     position: absolute;
     box-shadow: 0 0 1000px 50px rgb(67, 67, 124);
-    z-index: -100;
+    /* z-index: -100; */
 }
 
 .container {
@@ -74,5 +75,6 @@
 .image img{
   width: 40em;
 }
+
 
 </style>
