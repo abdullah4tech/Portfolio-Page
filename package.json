@@ -10,6 +10,7 @@
     "lint": "eslint . --ext .vue,.js,.jsx,.cjs,.mjs --fix --ignore-path .gitignore"
   },
   "dependencies": {
+    "@kalimahapps/vue-icons": "^1.4.1",
     "vue": "^3.4.21",
     "vue-router": "^4.3.0"
   },

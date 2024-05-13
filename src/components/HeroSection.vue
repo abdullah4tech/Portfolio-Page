@@ -1,5 +1,10 @@
+<script setup>
+import SocialMedia from './SocialMedia.vue';
+</script>
+
 <template>
-  <div class="container">
+  <main>
+    <div class="container">
     <div class="content">
       <h4>CREATE WEBSITE LIKE A PRO</h4>
       <h1>Hi, I'm <span>Abdullah</span>, Web Developer</h1>
@@ -12,9 +17,37 @@
       <button class="btn">Get Started</button>
     </div>
     <div class="image">
-      <img src="../assets/creative1.png" />
+      <deckgo-highlight-code language="javascript">
+        <code slot="code">
+          const generateSweetQuote = () => {
+            const sweetWords = [
+              "In your smile, I find the universe's purest joy.",
+              "Every moment with you feels like a beautiful melody playing in my heart.",
+              "Your presence in my life is sweeter than the most exquisite honey.",
+              "With you, every day is a journey filled with love, laughter, and endless possibilities.",
+              "Like a gentle breeze on a warm summer day, your love soothes my soul.",
+              "You're the missing piece to my puzzle, completing my life in ways I never thought possible.",
+              "In a world full of chaos, your love is my peaceful sanctuary.",
+              "With you by my side, every sunrise is more breathtaking and every sunset more magical.",
+              "Your love is the sweetest song my heart will ever know, and I'll cherish it for eternity.",
+              "Being with you is like walking through a garden of endless beauty, where every moment blooms with love."
+            ];
+
+            const randomIndex = Math.floor(Math.random() * sweetWords.length);
+            return sweetWords[randomIndex];
+          };
+
+          console.log(generateSweetQuote());
+        </code>
+      </deckgo-highlight-code>
+
+
     </div>
-  </div>
+    </div>
+    <div class="medias">
+      <SocialMedia />
+    </div>
+  </main>
 </template>
 
 <style scoped>
@@ -35,8 +68,8 @@
   display: flex;
   justify-content: center;
   align-items: center;
-  margin-top: 0px;
-  width: 80em;
+  margin-top: 50px;
+  width: 100em;
 }
 
 .content{
@@ -69,12 +102,21 @@
 }
 
 .image{
-  width: 70em;
+  width: 90em;
 }
 
 .image img{
   width: 40em;
 }
 
+.medias{
+  margin-top: 10rem;
+}
 
+main{
+  display: flex;
+  flex-direction: column;
+  justify-content: center;
+  align-items: center;
+}
 </style>
