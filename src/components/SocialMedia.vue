@@ -22,4 +22,15 @@ ion-icon:hover {
   color: rgb(185, 183, 183);
   font-size: 30px;
 }
+
+.social_media_icon a{
+  border-bottom: 5px solid transparent; 
+  transition: border-bottom 0.3s ease; 
+}
+
+.social_media_icon a:hover{
+  border-radius: 5px;
+  border-bottom: 5px solid #5151CA;
+}
+
 </style>

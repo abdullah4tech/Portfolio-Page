@@ -1,3 +1,6 @@
+<script setup>
+
+</script>
 
 <template>
     <div class="container">
@@ -13,7 +16,12 @@
                 <li class="link"><router-link to="/testimonials">Testimonials</router-link></li>
                 <li class="link"><router-link to="/contact">Contact</router-link></li>
             </ul>
-            <button class="btn">Hire Me</button>
+            <a href="https://t.co/t7X93cilTF">
+                <button class="btn">
+                    <p>GitHub</p>
+                    <ion-icon class="git" name="logo-github"></ion-icon>
+                </button>
+            </a>
         </nav>
     </div>
 </template>
@@ -21,7 +29,7 @@
 <style scoped>
 
 nav{
-    max-width: 1500px;
+    max-width: 1200px;
     margin: auto;
     padding: 2rem 1rem;
     display: flex;
@@ -30,6 +38,7 @@ nav{
 }
 .container{
     margin-left: 0;
+    
 }
 
 .logo {
@@ -83,6 +92,12 @@ nav{
 .link a:hover{
     color: rgb(86, 86, 231);
     transition: all 0.3s ease;
+}
+
+
+.btn{
+    display: flex;
+    gap: 5px;
 }
 
 </style>
