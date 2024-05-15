@@ -28,7 +28,8 @@ body{
 }
 
 .btn:hover{
-    background-color: rgb(81, 81, 202);
+    background-color: rgb(72, 72, 155);
+    border: 1px solid rgb(160, 160, 160);
 }
 
 .btn:active{
