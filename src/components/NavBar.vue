@@ -16,12 +16,10 @@
                 <li class="link"><router-link to="/testimonials">Testimonials</router-link></li>
                 <li class="link"><router-link to="/contact">Contact</router-link></li>
             </ul>
-            <a href="https://t.co/t7X93cilTF">
-                <button class="btn">
-                    <p>GitHub</p>
-                    <ion-icon class="git" name="logo-github"></ion-icon>
-                </button>
-            </a>
+            <button class="btn">
+                <p>GitHub</p>
+                <ion-icon class="git" name="logo-github"></ion-icon>
+            </button>
         </nav>
     </div>
 </template>
