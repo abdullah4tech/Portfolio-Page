@@ -5,7 +5,7 @@ import SocialMedia from './SocialMedia.vue';
 <template>
   <main>
     <div class="container">
-      <div class="content">
+      <div class="content show">
         <h4>CREATE WEBSITE LIKE A PRO</h4>
         <h1>Hi, I'm <span>Abdullah</span>, Web Developer</h1>
         <p>
@@ -58,6 +58,7 @@ import SocialMedia from './SocialMedia.vue';
   color: #ccc;
   font-size: 1rem;
   font-weight: 600;
+  animation: fadeIn 4s forwards; 
 }
 
 .container .content h1 {
@@ -66,6 +67,7 @@ import SocialMedia from './SocialMedia.vue';
   font-size: 3rem;
   font-weight: 700;
   line-height: 4rem;
+  animation: fadeIn 4s forwards; 
 }
 
 .container .content h1 span {
@@ -76,6 +78,7 @@ import SocialMedia from './SocialMedia.vue';
 .container .content p {
   margin-bottom: 2rem;
   color: #ccc;
+  animation: fadeIn 4s forwards; 
 }
 
 .image {
@@ -86,10 +89,6 @@ import SocialMedia from './SocialMedia.vue';
   width: 33em;
 }
 
-.medias {
-  margin-top: 10px;
-}
-
 
 main {
   display: flex;
@@ -97,4 +96,20 @@ main {
   justify-content: center;
   align-items: center;
 }
+
+.medias {
+  margin-top: 10px;
+  opacity: 0.3;
+  animation: fadeIn 4s forwards;
+}
+
+@keyframes fadeIn {
+  from {
+    opacity: 0.3; /* Start opacity */
+  }
+  to {
+    opacity: 1; /* End opacity */
+  }
+}
+
 </style>
