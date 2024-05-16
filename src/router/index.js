@@ -1,18 +1,15 @@
 import { createRouter, createWebHistory } from 'vue-router';
-import AboutPage from '@/components/AboutPage.vue';
-import HeroSection from '@/components/HeroSection.vue';
-import NotFound from '@/components/NotFound.vue';
 
 const routes = [
   {
     path: '/',
     name: 'Home',
-    component: HeroSection
+    component: () => import('@/components/HeroSection.vue')
   },
   {
     path: '/about', 
     name: 'About',
-    component: AboutPage
+    component: () => import('@/components/AboutPage.vue')
   },
   {
     path: '/projects',
@@ -32,7 +29,7 @@ const routes = [
   { 
     path: '/:catchAll(.*)', 
     name: '404',
-    component: NotFound
+    component: () => import('@/components/NotFound.vue')
   }
 ];
 
