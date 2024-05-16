@@ -1,5 +1,5 @@
 <script setup>
-
+import ThemeToggle from './ThemeToggle.vue';
 </script>
 
 <template>
@@ -16,10 +16,9 @@
                 <li class="link"><router-link to="/testimonials">Testimonials</router-link></li>
                 <li class="link"><router-link to="/contact">Contact</router-link></li>
             </ul>
-            <button class="btn">
-                <p>GitHub</p>
-                <ion-icon class="git" name="logo-github"></ion-icon>
-            </button>
+            <div >
+                <ThemeToggle />
+            </div>
         </nav>
     </div>
 </template>
