@@ -30,9 +30,9 @@
 }
 
 ion-icon{
-  color: rgb(185, 183, 183);;
+  color: white;
   
-  transition: color .3s ease-in-out;
+  transition: color .3s ease;
   margin-bottom: 1px;
 }
 
@@ -40,22 +40,21 @@ p{
   margin-bottom: 1px;
 }
 
-ion-icon:hover {
-  color: white;
-}
 
 .social_media_icon a{
   border-bottom: 5px solid transparent; 
   transition: 0.3s ease;
   border-bottom: 1px solid #5151CA;
   text-decoration: none;
-  color: rgb(185, 183, 183);
+  color: white;
   display: flex;
   justify-content: center;
   align-items: center;
   gap: 5px;
-  font-size: 16px;
+  font-size: 18px;
 }
+
+
 
 .social_media_icon{
   display: flex;
@@ -64,8 +63,8 @@ ion-icon:hover {
   gap: 10px;
 }
 
-.social_media_icon a:hover{
-  border-radius: 5px;
+.social_media_icon a:hover > *{
+  color: rgb(185, 183, 183);
 }
 
 
