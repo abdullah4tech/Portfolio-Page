@@ -1,6 +1,5 @@
 <script setup>
 import SocialMedia from './SocialMedia.vue';
-import PageWrapper from '@/components/PageWrapper.vue'
 </script>
 
 <template>
