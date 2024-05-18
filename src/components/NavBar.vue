@@ -26,7 +26,7 @@ import ThemeToggle from './ThemeToggle.vue';
 <style scoped>
 
 nav{
-    max-width: 1250px;
+    max-width: 1295px;
     margin: auto;
     padding: 2rem 1rem;
     display: flex;
