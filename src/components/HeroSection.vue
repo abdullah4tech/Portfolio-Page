@@ -190,7 +190,7 @@ svg {
 .info{
   display: flex;
   flex-direction: column;
-  gap: 7px;
+  gap: 15px;
 }
 
 .child{
