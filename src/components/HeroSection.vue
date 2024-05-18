@@ -62,34 +62,34 @@ import SocialMedia from './SocialMedia.vue';
       <div class="work">
         <div class="logo">
           <div class="img">
-            <img src="/src/assets/nexi_img.jpg" alt="code.png">
+            <img src="/src/assets/code.png">
           </div>
         </div>
         <div class="info">
           <div class="child">
-            <h3>CODE</h3>
+            <h3>College of Digital Excellence</h3>
             <p>Assisting Lecturer</p>
           </div>
           <time>JANUARY 5, 2024 - <span>PRESENT</span></time>
-          <p>
-            Lorem ipsum dolor sit amet consectetur adipisicing elit. In aspernatur aliquid quas consectetur dignissimos unde nobis, ratione et omnis. Deserunt qui, eos modi eveniet beatae saepe quia culpa distinctio praesentium non similique quos impedit veritatis quod aperiam iusto at sint.
+          <p class="p">
+            I am an Assistant Lecturer at the College of Digital Excellence with a strong background in technology and digital education. My expertise lies in programming languages, software development, and creating innovative solutions to enhance student learning. With a passion for teaching and a commitment to academic excellence, I aim to inspire and support students in their educational journey.
           </p>
         </div>
       </div>
       <div class="work">
         <div class="logo">
           <div class="img">
-            <img src="/src/assets/hng_img.jpg" alt="code.png">
+            <img src="https://avatars.githubusercontent.com/u/165901050?s=200&v=4">
           </div>
         </div>
         <div class="info">
           <div class="child">
-            <h3>CODE</h3>
-            <p>Assisting Lecturer</p>
+            <h3>Drop Dev.</h3>
+            <p>Founder and Organizer, Drop Dev Community</p>
           </div>
-          <time class="time">JANUARY 5, 2024 - <span>PRESENT</span></time>
-          <p>
-            Lorem ipsum dolor sit amet consectetur, adipisicing elit. Illum repellendus quos dignissimos. Ad ab recusandae pariatur doloremque exercitationem numquam maiores. Aspernatur doloribus numquam accusamus quisquam voluptate velit unde perferendis corporis.
+          <time class="time">MARCH 1, 2024 - <span>PRESENT</span></time>
+          <p class="p">
+            Drop Dev is a collaborative community for programmers, developers, and tech enthusiasts dedicated to creating and solving real-world problems through innovative technology solutions.
           </p>
         </div>
       </div>
@@ -108,7 +108,6 @@ import SocialMedia from './SocialMedia.vue';
 .blur {
   position: absolute;
   box-shadow: 0 0 1000px 50px rgb(67, 67, 124);
-  /* z-index: -100; */
 }
 
 .container {
@@ -116,7 +115,7 @@ import SocialMedia from './SocialMedia.vue';
   justify-content: center;
   align-items: center;
   margin-top: 30px;
-  width: 84em;
+  width: 81.2em;
 }
 
 .content {
@@ -124,6 +123,7 @@ import SocialMedia from './SocialMedia.vue';
   flex-direction: column;
   align-items: flex-start;
   justify-content: center;
+  width: 80em;
 }
 
 .container .content h4 {
@@ -155,7 +155,7 @@ import SocialMedia from './SocialMedia.vue';
 }
 
 .image {
-  width: 80em;
+  width: 90em;
 }
 
 .image img {
@@ -208,6 +208,11 @@ p{
   color: white;
 }
 
+
+.p{
+  color: #9c9c9c;
+}
+
 .info time span{
   color: rgb(12 206 107);
 }
@@ -216,7 +221,8 @@ p{
   display: grid;
   grid-template-columns: repeat(3, 1fr);
   grid-template-rows: auto;
-  margin-left: 35px;
+  margin-left: 10px;
+  gap: 50px;
 }
 
 .work{
@@ -236,8 +242,6 @@ p{
   width: 40px;
 }
 
-.logo 
-
 .info, p{
   margin-bottom: 10px;
 }
@@ -255,5 +259,9 @@ time{
     opacity: 1;
     /* End opacity */
   }
+}
+
+svg{
+  width: 550px;
 }
 </style>
