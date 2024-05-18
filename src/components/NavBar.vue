@@ -56,7 +56,7 @@ nav{
 .nav-links{
     backdrop-filter: blur(10px) brightness(1.2);
     -webkit-backdrop-filter: blur(8px) brightness(1.2);
-    box-shadow: 0 0 50px rgba(5, 5, 5, 0.5);
+    box-shadow: 0 0 30px rgba(5, 5, 5, 0.5);
     list-style: none;
     display: flex;
     justify-content: center;
@@ -65,7 +65,7 @@ nav{
     height: 4em;
     width: 30em;
     margin-right: 100px;
-    border-radius: 50px;
+    border-radius: 20px;
 }
 
 .link a{

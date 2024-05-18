@@ -236,6 +236,7 @@ p{
   padding: 9px;
   display: flex;
   border: 1px solid #1F2937;
+  border-radius: 10px;
 }
 
 .img img{
