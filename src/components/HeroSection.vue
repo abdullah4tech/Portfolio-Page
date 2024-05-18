@@ -115,7 +115,7 @@ import SocialMedia from './SocialMedia.vue';
   justify-content: center;
   align-items: center;
   margin-top: 30px;
-  width: 81.2em;
+  width: 84em;
 }
 
 .content {
@@ -163,7 +163,7 @@ import SocialMedia from './SocialMedia.vue';
 }
 
 svg {
-  margin-left: 150px;
+  margin-left: 110px;
   width: 450px;
   height: 100%;
 }
@@ -221,7 +221,7 @@ p{
   display: grid;
   grid-template-columns: repeat(3, 1fr);
   grid-template-rows: auto;
-  margin-left: 10px;
+  margin-left: 0px;
   gap: 50px;
 }
 
