@@ -39,3 +39,13 @@ ul{
 .btn:active{
     background-color: rgb(42, 42, 156);
 }
+
+
+[color-scheme='dark']{
+    background-color: #17171A;
+    color: black;
+}
+
+[color-scheme='light']{
+    background-color: #F4F4F4;
+}

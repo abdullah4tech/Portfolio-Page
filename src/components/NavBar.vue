@@ -1,7 +1,3 @@
-<script setup>
-import ThemeToggle from './ThemeToggle.vue';
-</script>
-
 <template>
     <div class="container">
         <nav>
@@ -16,8 +12,8 @@ import ThemeToggle from './ThemeToggle.vue';
                 <li class="link"><router-link to="/testimonials">Testimonials</router-link></li>
                 <li class="link"><router-link to="/contact">Contact</router-link></li>
             </ul>
-            <div >
-                <ThemeToggle />
+            <div>
+                <!-- ThemeToggle -->
             </div>
         </nav>
     </div>
@@ -35,7 +31,6 @@ nav{
 }
 .container{
     margin-left: 0;
-    
 }
 
 .logo {
