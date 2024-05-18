@@ -82,4 +82,8 @@ a{
 img{
   width: 20px;
 }
+
+.copyright p{
+  color: #9c9c9c;
+}
 </style>
