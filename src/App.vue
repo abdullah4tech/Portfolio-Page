@@ -1,9 +1,6 @@
 <script setup>
-// import { RouterLink, RouterView } from 'vue-router';
-//import HomePage from '@/components/HomePage.vue';
 import NavBar from '@/components/NavBar.vue'
-
-
+import FooterPage from './components/FooterPage.vue';
 </script>
 
 <template>
@@ -11,6 +8,7 @@ import NavBar from '@/components/NavBar.vue'
   <section>
     <RouterView />
   </section>
+  <FooterPage />
 </template>
 
 <style scoped>
