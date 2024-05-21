@@ -1,3 +1,8 @@
+<script setup>
+
+</script>
+
+
 <template>
     <div class="container">
         <nav>
@@ -12,14 +17,31 @@
                 <li class="link"><router-link to="/testimonials">Testimonials</router-link></li>
                 <li class="link"><router-link to="/contact">Contact</router-link></li>
             </ul>
-            <div>
-                <!-- ThemeToggle -->
-            </div>
+            <button class="btn1">
+                <ion-icon name="sunny-outline"></ion-icon>  
+            </button>
         </nav>
     </div>
 </template>
 
 <style scoped>
+
+.btn1{
+    width: 40px;
+    height: 40px;
+    border-radius: 50%;
+    border-color: blueviolet;
+    background-color: none;
+    display: flex;
+    justify-content: center;
+    align-items: center;
+    outline-color: blue;
+    background: #17171A solid;
+}
+
+.btn1 ion-icon{
+    font-size: 150%;
+}
 
 nav{
     max-width: 1295px;

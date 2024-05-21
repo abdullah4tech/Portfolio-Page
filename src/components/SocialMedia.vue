@@ -52,6 +52,7 @@ p{
   align-items: center;
   gap: 5px;
   font-size: 18px;
+  transition: transform 0.3s ease 0s;
 }
 
 
@@ -61,10 +62,12 @@ p{
   align-content: center;
   justify-content: center;
   gap: 10px;
+  transition: transform 0.3s ease 0s;
 }
 
 .social_media_icon a:hover > *{
   color: rgb(185, 183, 183);
+  transform: translateY(-2px);
 }
 
 

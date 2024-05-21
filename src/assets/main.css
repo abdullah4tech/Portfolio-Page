@@ -28,7 +28,6 @@ ul{
     background-color: rgb(70, 70, 224);
     border-radius: 10px;
     cursor: pointer;
-    border: 1px solid rgb(160, 160, 160);
     transition: all 0.3s ease;
 }
 
