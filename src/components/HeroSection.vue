@@ -246,9 +246,7 @@ p{
 .info, p{
   margin-bottom: 10px;
 }
-time{
-  padding-bottom: px;
-}
+
 
 @keyframes fadeIn {
   from {

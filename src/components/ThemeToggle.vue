@@ -1,17 +1,3 @@
-<script setup>
-import { useDark, useToggle } from '@vueuse/core';
-
-const isDark = useDark({
-  selector: 'body',
-  attribute: 'color-scheme',
-  valueDark: 'dark',
-  valueLight: 'light',
-})
-
-const toggleDark = useToggle(isDark)
-
-</script>
-
 
 <template>
   <label class="switch">

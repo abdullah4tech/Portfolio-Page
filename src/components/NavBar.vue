@@ -1,4 +1,24 @@
 <script setup>
+import { ref } from 'vue';
+import { useDark, useToggle } from '@vueuse/core';
+
+const state = ref('sunny-outline')
+
+
+const changeTheme = () => {
+    state.value = state.value === 'sunny-outline' ? 'moon-outline' : 'sunny-outline';
+    localStorage.setItem('Theme', state.value)
+}
+
+
+const isDark = useDark({
+  selector: 'body',
+  attribute: 'color-scheme',
+  valueDark: 'dark',
+  valueLight: 'light',
+})
+
+const toggleDark = useToggle(isDark)
 
 </script>
 
@@ -17,9 +37,9 @@
                 <li class="link"><router-link to="/testimonials">Testimonials</router-link></li>
                 <li class="link"><router-link to="/contact">Contact</router-link></li>
             </ul>
-            <button class="btn1">
-                <ion-icon name="sunny-outline"></ion-icon>  
-            </button>
+            <div class="btn1" @click="changeTheme" id="btn">
+                <ion-icon :name="state" :style="iconStyle" id="icon"></ion-icon>  
+            </div>
         </nav>
     </div>
 </template>
@@ -27,21 +47,28 @@
 <style scoped>
 
 .btn1{
-    width: 40px;
-    height: 40px;
+    width: 50px;
+    height: 50px;
     border-radius: 50%;
-    border-color: blueviolet;
-    background-color: none;
+    background-color: #1F1F23;
     display: flex;
     justify-content: center;
     align-items: center;
-    outline-color: blue;
-    background: #17171A solid;
+}
+
+.btn1:hover{
+    cursor: pointer;
 }
 
 .btn1 ion-icon{
-    font-size: 150%;
+    font-size: 160%;
+    color: white;
+    animation-name: spin;
+    animation-duration: 1000ms;
+    animation-iteration-count: 1;
+    animation-timing-function: linear;
 }
+
 
 nav{
     max-width: 1295px;
@@ -73,7 +100,7 @@ nav{
 .nav-links{
     backdrop-filter: blur(10px) brightness(1.2);
     -webkit-backdrop-filter: blur(8px) brightness(1.2);
-    box-shadow: 0 0 30px rgba(5, 5, 5, 0.5);
+    box-shadow: 0 0 50px #32324b;
     list-style: none;
     display: flex;
     justify-content: center;
@@ -83,6 +110,7 @@ nav{
     width: 30em;
     margin-right: 100px;
     border-radius: 20px;
+    background-color: #1F1F23;
 }
 
 .link a{
@@ -112,6 +140,16 @@ nav{
 .btn{
     display: flex;
     gap: 5px;
+}
+
+@keyframes spin{
+    from {
+        transform: rotate(0deg);
+    }
+
+    to {
+        transform: rotate(500deg);
+    }
 }
 
 </style>
