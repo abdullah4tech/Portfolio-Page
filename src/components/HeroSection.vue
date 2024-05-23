@@ -45,8 +45,8 @@ import SocialMedia from './SocialMedia.vue';
             <linearGradient id="paint-linear" x1="1272.23" y1="479.474" x2="506.242" y2="-216.277"
               gradientUnits="userSpaceOnUse">
               <stop stop-color="#27b173"></stop>
-              <stop offset="0.619553" stop-color="#1a663f"></stop>
-              <stop offset="0.93102" stop-color="#26312d"></stop>
+              <stop offset="0.619553" stop-color="rgb(70, 70, 224)"></stop>
+              <stop offset="0.93102" stop-color="#27b173"></stop>
             </linearGradient>
             <clipPath>
               <rect width="1273" height="906" fill="white"></rect>
@@ -263,4 +263,26 @@ p{
 svg{
   width: 550px;
 }
+
+.path {
+  stroke-dasharray: 500px 100px;
+  animation-name: animate;
+  animation-duration: 100s;
+  animation-timing-function: linear;
+  animation-delay: 0s;
+  animation-iteration-count: infinite;
+  animation-direction: alternate-reverse;
+  animation-fill-mode: none;
+  animation-play-state: running;
+}
+
+@keyframes animate {
+    0% {
+      stroke-dashoffset: 0;
+    }
+    100% {
+      stroke-dashoffset: 12433.8193359375; /* Path length */
+    }
+}
+
 </style>

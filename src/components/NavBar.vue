@@ -1,28 +1,3 @@
-<script setup>
-import { ref } from 'vue';
-import { useDark, useToggle } from '@vueuse/core';
-
-const state = ref('sunny-outline')
-
-
-const changeTheme = () => {
-    state.value = state.value === 'sunny-outline' ? 'moon-outline' : 'sunny-outline';
-    localStorage.setItem('Theme', state.value)
-}
-
-
-const isDark = useDark({
-  selector: 'body',
-  attribute: 'color-scheme',
-  valueDark: 'dark',
-  valueLight: 'light',
-})
-
-const toggleDark = useToggle(isDark)
-
-</script>
-
-
 <template>
     <div class="container">
         <nav>

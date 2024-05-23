@@ -1,4 +1,7 @@
 @import url('https://fonts.googleapis.com/css2?family=Inter:wght@400;700&family=Cabin:ital,wght@0,400;0,500;0,700;1,400;1,500;1,700&display=swap'); 
+@import url('https://fonts.googleapis.com/css?family=Open+Sans:400italic');
+@import url('https://fonts.googleapis.com/css2?family=Nova+Square&display=swap');
+
 
 *{
     padding: 0;
@@ -12,6 +15,8 @@
 h1{
     color: white;
 }
+
+
 
 body,
 ul{
