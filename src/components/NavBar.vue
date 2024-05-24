@@ -1,3 +1,17 @@
+<script setup>
+import { ref } from 'vue';
+
+const state = ref('sunny-outline')
+
+
+const changeTheme = () => {
+    state.value = state.value === 'sunny-outline' ? 'moon-outline' : 'sunny-outline';
+    localStorage.setItem('Theme', state.value)
+}
+
+</script>
+
+
 <template>
     <div class="container">
         <nav>
