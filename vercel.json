@@ -1,4 +1,13 @@
 {
+  "builds": [
+    {
+      "src": "src/main.js",
+      "use": "@vercel/static-build",
+      "config": {
+        "distDir": "dist"
+      }
+    }
+  ],
   "rewrites": [
     {
       "source": "/(.*)",
