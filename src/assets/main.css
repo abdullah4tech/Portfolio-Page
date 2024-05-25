@@ -12,8 +12,14 @@
     font-family: 'Inter', sans-serif;
 }
 
-h1{
+h1,
+h2,
+h3{
     color: white;
+}
+
+h1, h2{
+    font-family: "Nova Square", sans-serif;
 }
 
 
@@ -53,3 +59,16 @@ ul{
 [color-scheme='light']{
     background-color: #F4F4F4;
 }
+
+@keyframes fadeIn {
+    from {
+      opacity: 0.3;
+      /* Start opacity */
+    }
+  
+    to {
+      opacity: 1;
+      /* End opacity */
+    }
+}
+  

@@ -22,7 +22,7 @@
       <div class="soft skills">
         <h2>Soft Skills</h2>
         <ul>
-          <li><b>Problem Solving: </b>I excel at diagnosing complex issues and developing effective, efficient solutions.</li>
+          <li><b>Problem Solving: </b><p class="p"></p></li>
           <li><b>Team Collaboration: </b>I thrive in team settings, communicating effectively and contributing to collective success.</li>
           <li><b>Adaptability: </b>I quickly learn and adapt to new technologies and environments, ensuring I stay up-to-date with industry trends.</li>
           <li><b>Attention to Detail: </b>I derive satisfaction from crafting meticulous designs and user interfaces, placing a strong emphasis on quality to ensure a polished end product.</li>
@@ -185,7 +185,7 @@
   display: flex;
   justify-content: center;
   align-items: center;
-  gap: 5px
+  gap: 5px;
 }
 
 .view_resume p{
@@ -216,7 +216,7 @@ h1 {
 
 .p{
   margin-bottom: 20px;
-  color: #ffffff;
+  color: grey;
 }
 
 

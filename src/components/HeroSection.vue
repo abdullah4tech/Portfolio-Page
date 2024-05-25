@@ -247,19 +247,6 @@ p{
   margin-bottom: 10px;
 }
 
-
-@keyframes fadeIn {
-  from {
-    opacity: 0.3;
-    /* Start opacity */
-  }
-
-  to {
-    opacity: 1;
-    /* End opacity */
-  }
-}
-
 svg{
   width: 550px;
 }

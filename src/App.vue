@@ -26,6 +26,7 @@ section{
   align-items: center;
 }
 
+
 @keyframes slideAnime{
   from{
     transform: translateY(108px);

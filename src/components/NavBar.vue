@@ -4,7 +4,7 @@ import { ref } from 'vue';
 const state = ref('sunny-outline')
 
 
-const changeTheme = () => {
+const toggleTheme = () => {
     state.value = state.value === 'sunny-outline' ? 'moon-outline' : 'sunny-outline';
     localStorage.setItem('Theme', state.value)
 }
@@ -23,11 +23,10 @@ const changeTheme = () => {
             <ul class="nav-links">
                 <li class="link"><router-link to="/about">About</router-link></li>
                 <li class="link"><router-link to="/projects">Projects</router-link></li>
-                <li class="link"><router-link to="/testimonials">Testimonials</router-link></li>
                 <li class="link"><router-link to="/contact">Contact</router-link></li>
             </ul>
-            <div class="btn1" @click="changeTheme" id="btn">
-                <ion-icon :name="state" :style="iconStyle" id="icon"></ion-icon>  
+            <div class="btn1" @click="toggleTheme" id="btn">
+                <ion-icon :name="state" :style="toggleTheme" id="icon"></ion-icon>  
             </div>
         </nav>
     </div>
@@ -89,14 +88,14 @@ nav{
 .nav-links{
     backdrop-filter: blur(10px) brightness(1.2);
     -webkit-backdrop-filter: blur(8px) brightness(1.2);
-    box-shadow: 0 0 50px #32324b;
+    box-shadow: 0 0 50px #1f1f1f;
     list-style: none;
     display: flex;
     justify-content: center;
     align-items: center;
     gap: 3rem;
     height: 4em;
-    width: 30em;
+    width: 20em;
     margin-right: 100px;
     border-radius: 20px;
     background-color: #1F1F23;
