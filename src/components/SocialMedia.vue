@@ -70,6 +70,4 @@ p{
   transform: translateY(-2px);
 }
 
-
-
 </style>

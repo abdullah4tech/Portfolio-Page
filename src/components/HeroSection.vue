@@ -272,4 +272,64 @@ svg{
     }
 }
 
+
+/* For tablets */
+@media screen and (max-width: 1024px) and (min-width: 768px) {
+  .container {
+    display: flex;
+    justify-content: center;
+    align-items: center;
+    margin-top: 30px;
+    width: 20em;
+  }
+
+  .content {
+    display: flex;
+    flex-direction: column;
+    align-items: flex-start;
+    justify-content: center;
+    width: 20em;
+  }
+
+  .container .content h4 {
+    margin-bottom: 1rem;
+    color: #ccc;
+    font-size: 1rem;
+    font-weight: 600;
+    animation: fadeIn 4s forwards;
+  }
+
+  .container .content h1 {
+    color: white;
+    margin-bottom: 1rem;
+    font-size: 3rem;
+    font-weight: 700;
+    line-height: 4rem;
+    animation: fadeIn 4s forwards;
+  }
+
+  .container .content h1 span {
+    -webkit-text-fill-color: transparent;
+    -webkit-text-stroke: 1px #fff;
+  }
+
+  .container .content p {
+    margin-bottom: 2rem;
+    color: #ccc;
+    animation: fadeIn 4s forwards;
+  }
+
+}
+
+/* For smartphones (portrait) */
+@media screen and (max-width: 480px) {
+  /* Add your smartphone (portrait) styles here */
+}
+
+/* For smartphones (landscape) */
+@media screen and (max-width: 800px) {
+  /* Add your smartphone (landscape) styles here */
+}
+
+
 </style>
