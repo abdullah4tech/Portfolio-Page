@@ -1,1 +1,7 @@
 @import "tailwindcss";
+
+body {
+  font-family: "Yantramanav", sans-serif;
+  background-color: black;
+  color: white;
+}
