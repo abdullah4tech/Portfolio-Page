@@ -21,9 +21,15 @@ const projects = [
           <p class="text-2xl italic font-light">I'm a dedicated Software Engineer focused on building scalable web applications and intuitive user interfaces, turning complex challenges into innovative solutions.</p>
         </div>
         <div class="flex items-center gap-5 mt-10">
-          <Twitter />
-          <Github />
-          <MailIcon />
+          <span class="p-3 bg-gray-800/10 backdrop-blur-md rounded-full">
+            <Twitter />
+          </span>
+          <span class="p-3 bg-gray-800/10 backdrop-blur-md rounded-full">
+            <Github />
+          </span>
+          <span class="p-3 bg-gray-800/10 backdrop-blur-md rounded-full">
+            <MailIcon />
+          </span>
           <div class="flex items-center px-3 py-2 bg-gray-800/10 backdrop-blur-md rounded-full gap-4">
             <span>Resume</span>
             <span class="p-2 bg-black rounded-full">
