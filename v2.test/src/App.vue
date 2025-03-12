@@ -1,6 +1,7 @@
 <script setup lang="ts">
 import HeaderComponent from './components/HeaderComponent.vue';
-import { ArrowRight, Twitter, Github, MailIcon, ArrowDownFromLine } from "lucide-vue-next";
+import { ArrowRight, Twitter, Github, MailIcon, ArrowDownFromLine, ChevronLeft, ChevronRight } from "lucide-vue-next";
+import tes_v from '@/components/tes_v.vue'
 
 const projects = [
   {
@@ -16,7 +17,7 @@ const projects = [
     link: "https://github.com/abdullah4tech/community-extension",
   },
   {
-    nane: "Product Landing Page",
+    name: "Product Landing Page",
     link: "https://e-commerce-product-page-three-pi.vercel.app/",
   },
 ];
@@ -24,9 +25,9 @@ const projects = [
 
 
 <template>
-  <HeaderComponent />
+  <HeaderComponent class="fixed top-0 left-0 w-full z-50" />
   <main class="">
-    <section class="px-15 my-20 flex items-start gap-52 justify-between">
+    <section class="px-15 my-28 flex items-start gap-52 justify-between fixed top-0 left-0 w-[100%] h-[100vh] z-[1] p-5">
       <div>
         <div class="flex flex-col w-[100%] gap-10">
           <h1 class="font-medium text-8xl">I'm Abdullah<br>Mustapha.</h1>
@@ -58,14 +59,12 @@ const projects = [
             :key="index"
           >
             <a :href="project.link" target="_blank" class="relative py-3 flex items-center justify-between group overflow-hidden cursor-pointer border-b border-gray-400">
-              <!-- Border Fill Effect -->
               <span
                 class="absolute bottom-0 left-0 w-full h-[2px] bg-gray-500 origin-left scale-x-0 transition-transform duration-500 group-hover:scale-x-100"
               ></span>
 
               <span>{{ project.name }}</span>
 
-              <!-- Arrow Appears on Hover -->
               <span
                 class="transform scale-0 opacity-0 transition-all duration-300 group-hover:scale-100 group-hover:opacity-100 group-hover:translate-x-0 translate-x-4"
               >
@@ -77,5 +76,21 @@ const projects = [
       </div>
     </section>
 
+    <section class="absolute top-[100vh] left-0 w-[100%] h-[100vh] bg-black z-[1] p-5 text-white">
+      <div class="flex justify-between pt-20 px-10">
+        <p class="font-bold">01 / 05</p>
+        <div class="flex items-center space-x-4">
+          <span class="flex items-center justify-center rounded-full bg-white/30 p-1">
+            <ChevronLeft />
+          </span>
+          <span class="flex items-center justify-center rounded-full bg-white/30 p-1">
+            <ChevronRight />
+          </span>
+        </div>
+      </div>
+    </section>
+
   </main>
+
+  <!-- <tes_v /> -->
 </template>
