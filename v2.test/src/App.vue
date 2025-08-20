@@ -1,7 +1,7 @@
 <script setup lang="ts">
 import HeaderComponent from './components/HeaderComponent.vue';
 import { ArrowRight, Twitter, Github, MailIcon, ArrowDownFromLine, ChevronLeft, ChevronRight } from "lucide-vue-next";
-import tes_v from '@/components/tes_v.vue'
+import { ref } from 'vue';
 
 const projects = [
   {
@@ -26,21 +26,25 @@ const projects = [
 
 <template>
   <HeaderComponent class="fixed top-0 left-0 w-full z-50" />
-  <main class="">
-    <section class="px-15 my-28 flex items-start gap-52 justify-between fixed top-0 left-0 w-[100%] h-[100vh] z-[1] p-5">
+  <!-- CSS-based particles background -->
+  <div class="particles-container fixed inset-0 -z-10 overflow-hidden">
+    <div class="particle" v-for="n in 50" :key="n"></div>
+  </div>
+  <main class="relative z-10">
+    <section class="px-15 my-49 flex items-start gap-40 justify-between fixed top-0 left-0 w-[100%] h-[100vh] z-[1] p-5">
       <div>
         <div class="flex flex-col w-[100%] gap-10">
           <h1 class="font-medium text-8xl">I'm Abdullah<br>Mustapha.</h1>
           <p class="text-2xl italic font-light">I'm a dedicated Software Engineer focused on building scalable web applications and intuitive user interfaces, turning complex challenges into innovative solutions.</p>
         </div>
         <div class="flex items-center gap-5 mt-10">
-          <a href="https://twitter.com/abdullah4tech_" target="_blank" class="p-3 bg-gray-800/10 backdrop-blur-md rounded-full">
+          <a href="https://twitter.com/abdullah4tech_" target="_blank" class="p-3 bg-gray-800/10 backdrop-blur-md hover:bg-gray-300 hover:transition-colors hover:ease-in-out rounded-full">
             <Twitter />
           </a>
-          <a href="https://github.com/abdullah4tech" target="_blank" class="p-3 bg-gray-800/10 backdrop-blur-md rounded-full">
+          <a href="https://github.com/abdullah4tech" target="_blank" class="p-3 bg-gray-800/10 backdrop-blur-md hover:bg-gray-300 hover:transition-colors hover:ease-in-out rounded-full">
             <Github />
           </a>
-          <a href="mailto:abdullahmu4life@gmail.com" class="p-3 bg-gray-800/10 backdrop-blur-md rounded-full">
+          <a href="mailto:abdullahmu4life@gmail.com" class="p-3 bg-gray-800/10 backdrop-blur-md hover:bg-gray-300 hover:transition-colors hover:ease-in-out rounded-full">
             <MailIcon />
           </a>
           <div class="flex items-center px-3 py-2 bg-gray-800/10 backdrop-blur-md rounded-full gap-4">
@@ -92,5 +96,4 @@ const projects = [
 
   </main>
 
-  <!-- <tes_v /> -->
 </template>
