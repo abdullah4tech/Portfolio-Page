@@ -49,14 +49,14 @@ const projects = [
           </a>
           <div class="flex items-center px-3 py-2 bg-gray-800/10 backdrop-blur-md rounded-full gap-4">
             <span>Resume</span>
-            <span class="p-2 bg-black rounded-full">
+            <span class="p-2 bg-black hover: rounded-full">
               <ArrowDownFromLine class="text-white w-[17px] h-[17px]" />
             </span>
           </div>
         </div>
       </div>
       <div class="flex flex-col w-[70%] space-y-5">
-        <span class="text-gray-500 text-sm font-medium">SELECTED PROJECTS</span>
+        <span class="text-gray-500 text-sm font-medium">RECENT PROJECTS...</span>
         <ul class="flex flex-col space-y-5">
           <li
             v-for="(project, index) in projects"

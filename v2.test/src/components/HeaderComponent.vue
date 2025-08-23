@@ -1,4 +1,5 @@
-<script setup lang='ts'></script>
+<script setup lang='ts'>
+</script>
 
 
 <template>
@@ -12,14 +13,18 @@
     <!-- Navigation -->
     <nav class="py-2 px-5 flex justify-center rounded-full backdrop-blur-md">
       <ul class="flex items-center gap-5 text-[15px] text-gray-500">
-        <li><a class="text-blue" href="#">About</a></li>
-        <li><a href="#">Work</a></li>
         <li><a href="#">Blogs</a></li>
+        <li><a href="#">Projects</a></li>
         <li><a href="#">Contact</a></li>
-        <li><a href="#">Photo</a></li>
-        <li><a href="#">X</a></li>
-        <li><a href="#">Github</a></li>
-        <li><a href="#">Light/Dark Mode</a></li>
+        <li><a href="#">
+          <img src="/images/camera.svg" class="size-4 text-gray-300">
+        </a></li>
+        <li><a href="#">
+          <img src="/images/github.svg" class="size-4">
+        </a></li>
+        <li><a href="#">
+          <img src="/images/light.svg" class="size-4">
+        </a></li>
       </ul>
     </nav>
 
