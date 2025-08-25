@@ -1,28 +1,35 @@
 <script setup lang="ts">
-import HeaderComponent from './components/HeaderComponent.vue';
-import { ArrowRight, Twitter, Github, MailIcon, ArrowDownFromLine, ChevronLeft, ChevronRight } from "lucide-vue-next";
-import { ref } from 'vue';
+import HeaderComponent from './components/HeaderComponent.vue'
+import {
+  ArrowRight,
+  Twitter,
+  Github,
+  MailIcon,
+  ArrowDownFromLine,
+  ChevronLeft,
+  ChevronRight,
+} from 'lucide-vue-next'
+import { ref } from 'vue'
 
 const projects = [
   {
-    name: "Authentication System",
-    link: "https://auth-system-gr5y.onrender.com/",
+    name: 'Zenon Router',
+    link: 'https://github.com/n8bird-oss/zenon-router',
   },
   {
-    name: "Backend Starter CLI",
-    link: "https://www.npmjs.com/package/backend-starter-cli/",
+    name: 'Backend Starter CLI',
+    link: 'https://www.npmjs.com/package/backend-starter-cli/',
   },
   {
-    name: "Community Extension",
-    link: "https://github.com/abdullah4tech/community-extension",
+    name: 'Linux Shell (fsh)',
+    link: 'https://github.com/n8bird-oss/fsh',
   },
   {
-    name: "Product Landing Page",
-    link: "https://e-commerce-product-page-three-pi.vercel.app/",
+    name: 'Community Extension',
+    link: 'https://github.com/abdullah4tech/community-extension',
   },
-];
+]
 </script>
-
 
 <template>
   <HeaderComponent class="fixed top-0 left-0 w-full z-50" />
@@ -31,25 +38,45 @@ const projects = [
     <div class="particle" v-for="n in 50" :key="n"></div>
   </div>
   <main class="relative z-10">
-    <section class="px-15 my-49 flex items-start gap-40 justify-between fixed top-0 left-0 w-[100%] h-[100vh] z-[1] p-5">
+    <section
+      class="px-15 my-49 flex items-start gap-40 justify-between fixed top-0 left-0 w-[100%] h-[100vh] z-[1] p-5"
+    >
       <div>
         <div class="flex flex-col w-[100%] gap-10">
-          <h1 class="font-medium text-8xl">I'm Abdullah<br>Mustapha.</h1>
-          <p class="text-2xl italic font-light">I'm a dedicated Software Engineer focused on building scalable web applications and intuitive user interfaces, turning complex challenges into innovative solutions.</p>
+          <h1 class="font-medium text-8xl">I'm Abdullah<br />Mustapha.</h1>
+          <p class="text-2xl italic font-light text-gray-700">
+            I'm a dedicated Software Engineer focused on building scalable web applications and
+            intuitive user interfaces, turning complex challenges into innovative solutions.
+          </p>
         </div>
         <div class="flex items-center gap-5 mt-10">
-          <a href="https://twitter.com/abdullah4tech_" target="_blank" class="p-3 bg-gray-800/10 backdrop-blur-md hover:bg-gray-300 hover:transition-colors hover:ease-in-out rounded-full">
+          <a
+            href="https://twitter.com/abdullah4tech_"
+            target="_blank"
+            class="p-3 bg-gray-800/10 backdrop-blur-md hover:bg-gray-300 transition-colors duration-200 rounded-full"
+          >
             <Twitter />
           </a>
-          <a href="https://github.com/abdullah4tech" target="_blank" class="p-3 bg-gray-800/10 backdrop-blur-md hover:bg-gray-300 hover:transition-colors hover:ease-in-out rounded-full">
+          <a
+            href="https://github.com/abdullah4tech"
+            target="_blank"
+            class="p-3 bg-gray-800/10 backdrop-blur-md hover:bg-gray-300 transition-colors duration-200 rounded-full"
+          >
             <Github />
           </a>
-          <a href="mailto:abdullahmu4life@gmail.com" class="p-3 bg-gray-800/10 backdrop-blur-md hover:bg-gray-300 hover:transition-colors hover:ease-in-out rounded-full">
+          <a
+            href="mailto:abdullahmu4life@gmail.com"
+            class="p-3 bg-gray-800/10 backdrop-blur-md hover:bg-gray-300 transition-colors duration-200 rounded-full"
+          >
             <MailIcon />
           </a>
-          <div class="flex items-center px-3 py-2 bg-gray-800/10 backdrop-blur-md rounded-full gap-4">
+          <div
+            class="group cursor-pointer flex items-center px-3 py-2 bg-gray-800/10 backdrop-blur-md rounded-full gap-4"
+          >
             <span>Resume</span>
-            <span class="p-2 bg-black hover: rounded-full">
+            <span
+              class="p-2 bg-black rounded-full transition-transform duration-300 group-hover:scale-110 cursor-pointer"
+            >
               <ArrowDownFromLine class="text-white w-[17px] h-[17px]" />
             </span>
           </div>
@@ -58,11 +85,12 @@ const projects = [
       <div class="flex flex-col w-[70%] space-y-5">
         <span class="text-gray-500 text-sm font-medium">RECENT PROJECTS...</span>
         <ul class="flex flex-col space-y-5">
-          <li
-            v-for="(project, index) in projects"
-            :key="index"
-          >
-            <a :href="project.link" target="_blank" class="relative py-3 flex items-center justify-between group overflow-hidden cursor-pointer border-b border-gray-400">
+          <li v-for="(project, index) in projects" :key="index">
+            <a
+              :href="project.link"
+              target="_blank"
+              class="relative py-3 flex items-center justify-between group overflow-hidden cursor-pointer border-b border-gray-400"
+            >
               <span
                 class="absolute bottom-0 left-0 w-full h-[2px] bg-gray-500 origin-left scale-x-0 transition-transform duration-500 group-hover:scale-x-100"
               ></span>
@@ -93,7 +121,5 @@ const projects = [
         </div>
       </div>
     </section>
-
   </main>
-
 </template>
