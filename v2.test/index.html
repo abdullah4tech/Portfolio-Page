@@ -1,14 +1,226 @@
-<!DOCTYPE html>
-<html lang="">
+<!doctype html>
+<html lang="en">
   <head>
-    <meta charset="UTF-8">
-    <link rel="icon" href="/favicon.ico">
-    <meta name="viewport" content="width=device-width, initial-scale=1.0">
-    <link href="https://fonts.googleapis.com/css2?family=Yantramanav:wght@100;300;400;500;700;900&display=swap" rel="stylesheet">
-    <title>Abdullah O. Mustapha | Portfolio</title>
+    <meta charset="UTF-8" />
+    <meta name="viewport" content="width=device-width, initial-scale=1.0" />
+
+    <!-- Basic SEO -->
+    <title>Abdullah O. Mustapha | Software Engineer & Full-Stack Developer</title>
+    <meta
+      name="description"
+      content="Dedicated Software Engineer focused on building scalable web applications and intuitive user interfaces, turning complex challenges into innovative solutions."
+    />
+    <meta
+      name="keywords"
+      content="Abdullah Mustapha, Software Engineer, Full-Stack Developer, Vue.js, TypeScript, Web Development, Portfolio, Scalable Applications, UI/UX"
+    />
+    <meta name="author" content="Abdullah O. Mustapha" />
+    <meta name="robots" content="index, follow" />
+    <meta name="googlebot" content="index, follow" />
+
+    <!-- Canonical URL -->
+    <link rel="canonical" href="https://abdullahmustapha.xyz" />
+
+    <!-- Open Graph / Facebook -->
+    <meta property="og:type" content="website" />
+    <meta
+      property="og:title"
+      content="Abdullah O. Mustapha | Software Engineer & Full-Stack Developer"
+    />
+    <meta
+      property="og:description"
+      content="Dedicated Software Engineer focused on building scalable web applications and intuitive user interfaces, turning complex challenges into innovative solutions."
+    />
+    <meta property="og:url" content="https://abdullahmustapha.xyz" />
+    <meta property="og:site_name" content="Abdullah Mustapha Portfolio" />
+    <meta property="og:image" content="https://abdullahmustapha.xyz/og-image.jpg" />
+    <meta property="og:image:width" content="1200" />
+    <meta property="og:image:height" content="630" />
+    <meta property="og:image:alt" content="Abdullah O. Mustapha - Software Engineer Portfolio" />
+    <meta property="og:locale" content="en_US" />
+
+    <!-- Twitter Card -->
+    <meta name="twitter:card" content="summary_large_image" />
+    <meta name="twitter:site" content="@abdullah4tech_" />
+    <meta name="twitter:creator" content="@abdullah4tech_" />
+    <meta
+      name="twitter:title"
+      content="Abdullah O. Mustapha | Software Engineer & Full-Stack Developer"
+    />
+    <meta
+      name="twitter:description"
+      content="Dedicated Software Engineer focused on building scalable web applications and intuitive user interfaces, turning complex challenges into innovative solutions."
+    />
+    <meta name="twitter:image" content="https://abdullahmustapha.xyz/og-image.jpg" />
+    <meta name="twitter:image:alt" content="Abdullah O. Mustapha - Software Engineer Portfolio" />
+
+    <!-- Favicons and Icons -->
+    <link rel="icon" href="/favicon.ico" />
+    <link rel="apple-touch-icon" sizes="180x180" href="/apple-touch-icon.png" />
+    <link rel="icon" type="image/png" sizes="32x32" href="/favicon-32x32.png" />
+    <link rel="icon" type="image/png" sizes="16x16" href="/favicon-16x16.png" />
+    <link rel="manifest" href="/site.webmanifest" />
+
+    <!-- Theme and App Config -->
+    <meta name="theme-color" content="#ffffff" />
+    <meta name="msapplication-TileColor" content="#ffffff" />
+    <meta name="application-name" content="Abdullah Mustapha Portfolio" />
+    <meta name="apple-mobile-web-app-title" content="Abdullah Portfolio" />
+    <meta name="apple-mobile-web-app-capable" content="yes" />
+    <meta name="apple-mobile-web-app-status-bar-style" content="default" />
+
+    <!-- Critical performance optimizations -->
+    <link rel="preconnect" href="https://fonts.googleapis.com" />
+    <link rel="preconnect" href="https://fonts.gstatic.com" crossorigin />
+    <link rel="dns-prefetch" href="//github.com" />
+    <link rel="dns-prefetch" href="//twitter.com" />
+    <link rel="dns-prefetch" href="//npmjs.com" />
+
+    <!-- Optimized font loading - non-blocking -->
+    <link
+      rel="preload"
+      href="https://fonts.googleapis.com/css2?family=Yantramanav:wght@100;300;400;500;700;900&display=swap"
+      as="style"
+      onload="this.onload=null;this.rel='stylesheet'"
+    />
+    <noscript
+      ><link
+        rel="stylesheet"
+        href="https://fonts.googleapis.com/css2?family=Yantramanav:wght@100;300;400;500;700;900&display=swap"
+    /></noscript>
+
+    <!-- Security Headers -->
+    <meta http-equiv="X-Content-Type-Options" content="nosniff" />
+    <meta http-equiv="X-Frame-Options" content="DENY" />
+    <meta http-equiv="X-XSS-Protection" content="1; mode=block" />
+
+    <!-- Critical CSS inline to prevent render blocking -->
+    <style>
+      /* Critical CSS for initial paint */
+      html,
+      body {
+        margin: 0;
+        padding: 0;
+        min-height: 100vh;
+        font-family: -apple-system, BlinkMacSystemFont, 'Segoe UI', Roboto, Arial, sans-serif;
+        line-height: 1.6;
+        color: #333;
+        background-color: #ffffff;
+        -webkit-font-smoothing: antialiased;
+        -moz-osx-font-smoothing: grayscale;
+      }
+
+      #app {
+        min-height: 100vh;
+      }
+
+      /* Loading state to prevent layout shift */
+      .loading-container {
+        position: fixed;
+        top: 0;
+        left: 0;
+        width: 100%;
+        height: 100%;
+        background: #ffffff;
+        display: flex;
+        align-items: center;
+        justify-content: center;
+        z-index: 9999;
+      }
+
+      .loading-spinner {
+        width: 40px;
+        height: 40px;
+        border: 3px solid #f3f3f3;
+        border-top: 3px solid #333;
+        border-radius: 50%;
+        animation: spin 1s linear infinite;
+      }
+
+      @keyframes spin {
+        0% {
+          transform: rotate(0deg);
+        }
+        100% {
+          transform: rotate(360deg);
+        }
+      }
+
+      /* Hide loading when app is ready */
+      .app-loaded .loading-container {
+        display: none;
+      }
+
+      /* Basic responsive utilities */
+      @media (prefers-reduced-motion: reduce) {
+        *,
+        *::before,
+        *::after {
+          animation-duration: 0.01ms !important;
+          animation-iteration-count: 1 !important;
+          transition-duration: 0.01ms !important;
+        }
+      }
+    </style>
+
+    <!-- Structured Data -->
+    <script type="application/ld+json">
+      {
+        "@context": "https://schema.org",
+        "@type": "Person",
+        "name": "Abdullah O. Mustapha",
+        "jobTitle": "Software Engineer",
+        "description": "Dedicated Software Engineer focused on building scalable web applications and intuitive user interfaces, turning complex challenges into innovative solutions.",
+        "url": "https://abdullahmustapha.xyz",
+        "sameAs": ["https://twitter.com/abdullah4tech_", "https://github.com/abdullah4tech"],
+        "email": "abdullahmu4life@gmail.com",
+        "knowsAbout": [
+          "Software Engineering",
+          "Full-Stack Development",
+          "Vue.js",
+          "TypeScript",
+          "JavaScript",
+          "Web Development",
+          "User Interface Design",
+          "Scalable Applications"
+        ],
+        "worksFor": {
+          "@type": "Organization",
+          "name": "Freelance"
+        }
+      }
+    </script>
+
+    <!-- Resource hints for better performance -->
+    <link rel="preload" as="script" href="/src/main.ts" />
   </head>
   <body class="bg-white">
+    <!-- Loading state to prevent layout shift -->
+    <div class="loading-container" id="loading">
+      <div class="loading-spinner"></div>
+    </div>
+
     <div id="app"></div>
+
+    <!-- Main application script with module preload -->
+    <script type="module">
+      // Remove loading screen when app is ready
+      window.addEventListener('DOMContentLoaded', () => {
+        setTimeout(() => {
+          document.body.classList.add('app-loaded')
+        }, 100)
+      })
+    </script>
     <script type="module" src="/src/main.ts"></script>
+
+    <!-- Font loading optimization script -->
+    <script>
+      // Optimize font loading
+      if ('fonts' in document) {
+        document.fonts.load('400 1em Yantramanav').then(() => {
+          document.body.classList.add('fonts-loaded')
+        })
+      }
+    </script>
   </body>
 </html>
