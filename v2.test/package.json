@@ -3,27 +3,32 @@
   "version": "0.0.0",
   "private": true,
   "type": "module",
+  "packageManager": "bun@1.0.0",
   "scripts": {
-    "dev": "vite",
-    "build": "run-p type-check \"build-only {@}\" --",
-    "preview": "vite preview",
-    "build-only": "vite build",
-    "type-check": "vue-tsc --build",
-    "lint:oxlint": "oxlint . --fix -D correctness --ignore-path .gitignore",
-    "lint:eslint": "eslint . --fix",
-    "lint": "run-s lint:*",
-    "format": "prettier --write src/"
+    "preinstall": "node scripts/enforce-bun.js",
+    "dev": "bunx --bun vite",
+    "build": "bun run build-only",
+    "preview": "bunx --bun vite preview",
+    "build-only": "bunx --bun vite build",
+    "type-check": "bunx vue-tsc --build",
+    "lint:oxlint": "bunx oxlint . --fix -D correctness --ignore-path .gitignore",
+    "lint:eslint": "bunx eslint . --fix",
+    "lint": "bun run lint:oxlint && bun run lint:eslint",
+    "format": "bunx prettier --write src/",
+    "analyze": "ANALYZE=true bun run build"
   },
   "dependencies": {
     "@tailwindcss/vite": "^4.0.3",
+    "@vueuse/core": "^13.7.0",
+    "@vueuse/head": "^2.0.0",
     "@vueuse/motion": "^2.2.6",
     "lucide-vue-next": "^0.474.0",
     "tailwindcss": "^4.0.3",
-    "tsparticles": "^3.9.1",
+    "vite-plugin-pwa": "^1.0.3",
     "vite-ssg": "^28.0.0",
     "vite-svg-loader": "^5.1.0",
     "vue": "^3.5.13",
-    "vue3-particles": "^2.12.0"
+    "vue-router": "^4.5.1"
   },
   "devDependencies": {
     "@tsconfig/node22": "^22.0.0",
@@ -39,8 +44,11 @@
     "npm-run-all2": "^7.0.2",
     "oxlint": "^0.15.6",
     "prettier": "^3.4.2",
+    "rollup-plugin-visualizer": "^5.12.0",
+    "terser": "^5.43.1",
     "typescript": "~5.7.3",
     "vite": "^6.0.11",
+    "vite-plugin-compression": "^0.5.1",
     "vite-plugin-vue-devtools": "^7.7.0",
     "vue-tsc": "^2.2.0"
   }
