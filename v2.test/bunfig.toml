@@ -1,0 +1,30 @@
+[install]
+# Lock to bun package manager only
+lockfile = true
+exact = false
+cache = "~/.bun/install/cache"
+
+[install.scopes]
+# Configure any scoped packages if needed
+
+[run]
+# Bun runtime configuration
+bun = true
+
+# Development server configuration
+[dev]
+port = 3000
+host = "localhost"
+
+# Build optimizations
+[build]
+target = "browser"
+minify = true
+sourcemap = true
+
+# Performance settings
+[performance]
+# Enable faster installs
+parallel = true
+# Use hardlinks when possible
+hardlinks = true
