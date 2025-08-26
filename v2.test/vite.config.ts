@@ -1,5 +1,5 @@
 import { fileURLToPath, URL } from 'node:url'
-import { defineConfig, splitVendorChunkPlugin } from 'vite'
+import { defineConfig } from 'vite'
 import svgLoader from 'vite-svg-loader'
 import tailwindcss from '@tailwindcss/vite'
 import vue from '@vitejs/plugin-vue'
@@ -38,7 +38,6 @@ export default defineConfig({
         ],
       },
     }),
-    splitVendorChunkPlugin(),
     VitePWA({
       registerType: 'autoUpdate',
       workbox: {
@@ -137,19 +136,36 @@ export default defineConfig({
     // Advanced chunking strategy
     rollupOptions: {
       output: {
-        // Manual chunking for better caching
-        manualChunks: {
+        // Manual chunking for better caching using function form
+        manualChunks(id) {
           // Vue core
-          'vue-vendor': ['vue', 'vue-router'],
+          if (id.includes('vue-router') || id.includes('node_modules/vue/')) {
+            return 'vue-vendor'
+          }
 
           // VueUse utilities
-          vueuse: ['@vueuse/core', '@vueuse/head', '@vueuse/motion'],
+          if (
+            id.includes('@vueuse/core') ||
+            id.includes('@vueuse/head') ||
+            id.includes('@vueuse/motion')
+          ) {
+            return 'vueuse'
+          }
 
           // UI libraries
-          'ui-libs': ['lucide-vue-next'],
+          if (id.includes('lucide-vue-next')) {
+            return 'ui-libs'
+          }
 
-          // Particles (heavy library)
-          particles: ['tsparticles', 'vue3-particles'],
+          // Particles (heavy library) - though removed, keeping for future
+          if (id.includes('tsparticles') || id.includes('vue3-particles')) {
+            return 'particles'
+          }
+
+          // Other vendor chunks
+          if (id.includes('node_modules')) {
+            return 'vendor'
+          }
         },
 
         // Optimize file naming for caching
