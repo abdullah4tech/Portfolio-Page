@@ -548,3 +548,73 @@ body {
     display: none !important;
   }
 }
+
+/* Production-safe ResumeButton styles */
+a.resume-button.resume-button {
+  position: relative !important;
+  display: inline-flex !important;
+  align-items: center !important;
+  gap: 0.5rem !important;
+  padding: 12px 24px !important;
+  background: #f3f4f6 !important;
+  color: #374151 !important;
+  text-decoration: none !important;
+  border-radius: 50px !important;
+  font-weight: 600 !important;
+  font-size: 14px !important;
+  font-family: inherit !important;
+  transition: all 0.3s cubic-bezier(0.4, 0, 0.2, 1) !important;
+  overflow: hidden !important;
+  border: none !important;
+  cursor: pointer !important;
+  backdrop-filter: blur(10px) !important;
+  box-shadow: 0 1px 3px rgba(0, 0, 0, 0.1) !important;
+}
+
+a.resume-button.resume-button:hover {
+  color: white !important;
+  box-shadow: 0 8px 25px rgba(102, 126, 234, 0.3) !important;
+  transform: translateY(-1px) !important;
+}
+
+a.resume-button.resume-button:focus {
+  outline: none !important;
+  box-shadow: 0 0 0 3px rgba(102, 126, 234, 0.4) !important;
+}
+
+a.resume-button.resume-button:active {
+  transform: translateY(0) !important;
+  box-shadow: 0 4px 15px rgba(102, 126, 234, 0.4) !important;
+}
+
+.resume-button .button-content {
+  position: relative !important;
+  z-index: 2 !important;
+  display: flex !important;
+  align-items: center !important;
+  gap: 0.5rem !important;
+  transition: all 0.3s ease !important;
+}
+
+.resume-button .button-icon {
+  transition: transform 0.3s ease !important;
+  width: 18px !important;
+  height: 18px !important;
+}
+
+.resume-button .button-text {
+  font-weight: 600 !important;
+  letter-spacing: 0.025em !important;
+}
+
+@media (max-width: 768px) {
+  a.resume-button.resume-button {
+    padding: 10px 20px !important;
+    font-size: 13px !important;
+  }
+
+  .resume-button .button-icon {
+    width: 16px !important;
+    height: 16px !important;
+  }
+}
