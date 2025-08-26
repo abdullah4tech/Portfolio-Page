@@ -56,9 +56,8 @@
 
     <!-- Favicons and Icons -->
     <link rel="icon" href="/favicon.ico" />
-    <link rel="apple-touch-icon" sizes="180x180" href="/apple-touch-icon.png" />
-    <link rel="icon" type="image/png" sizes="32x32" href="/favicon-32x32.png" />
-    <link rel="icon" type="image/png" sizes="16x16" href="/favicon-16x16.png" />
+    <link rel="apple-touch-icon" sizes="180x180" href="/apple-touch-icon.svg" />
+    <link rel="icon" type="image/x-icon" href="/favicon.ico" />
     <link rel="manifest" href="/site.webmanifest" />
 
     <!-- Theme and App Config -->
@@ -66,6 +65,7 @@
     <meta name="msapplication-TileColor" content="#ffffff" />
     <meta name="application-name" content="Abdullah Mustapha Portfolio" />
     <meta name="apple-mobile-web-app-title" content="Abdullah Portfolio" />
+    <meta name="mobile-web-app-capable" content="yes" />
     <meta name="apple-mobile-web-app-capable" content="yes" />
     <meta name="apple-mobile-web-app-status-bar-style" content="default" />
 
@@ -91,7 +91,6 @@
 
     <!-- Security Headers -->
     <meta http-equiv="X-Content-Type-Options" content="nosniff" />
-    <meta http-equiv="X-Frame-Options" content="DENY" />
     <meta http-equiv="X-XSS-Protection" content="1; mode=block" />
 
     <!-- Critical CSS inline to prevent render blocking -->
@@ -128,21 +127,108 @@
         z-index: 9999;
       }
 
-      .loading-spinner {
+      .loader {
         width: 40px;
-        height: 40px;
-        border: 3px solid #f3f3f3;
-        border-top: 3px solid #333;
-        border-radius: 50%;
-        animation: spin 1s linear infinite;
+        aspect-ratio: 1;
+        --c: linear-gradient(#333 0 0);
+        --r1: radial-gradient(farthest-side at bottom, #333 93%, #0000);
+        --r2: radial-gradient(farthest-side at top, #333 93%, #0000);
+        background:
+          var(--c), var(--r1), var(--r2), var(--c), var(--r1), var(--r2), var(--c), var(--r1),
+          var(--r2);
+        background-repeat: no-repeat;
+        animation: l2 1s infinite alternate;
       }
-
-      @keyframes spin {
-        0% {
-          transform: rotate(0deg);
+      @keyframes l2 {
+        0%,
+        25% {
+          background-size:
+            8px 0,
+            8px 4px,
+            8px 4px,
+            8px 0,
+            8px 4px,
+            8px 4px,
+            8px 0,
+            8px 4px,
+            8px 4px;
+          background-position:
+            0 50%,
+            0 calc(50% - 2px),
+            0 calc(50% + 2px),
+            50% 50%,
+            50% calc(50% - 2px),
+            50% calc(50% + 2px),
+            100% 50%,
+            100% calc(50% - 2px),
+            100% calc(50% + 2px);
         }
+        50% {
+          background-size:
+            8px 100%,
+            8px 4px,
+            8px 4px,
+            8px 0,
+            8px 4px,
+            8px 4px,
+            8px 0,
+            8px 4px,
+            8px 4px;
+          background-position:
+            0 50%,
+            0 calc(0% - 2px),
+            0 calc(100% + 2px),
+            50% 50%,
+            50% calc(50% - 2px),
+            50% calc(50% + 2px),
+            100% 50%,
+            100% calc(50% - 2px),
+            100% calc(50% + 2px);
+        }
+        75% {
+          background-size:
+            8px 100%,
+            8px 4px,
+            8px 4px,
+            8px 100%,
+            8px 4px,
+            8px 4px,
+            8px 0,
+            8px 4px,
+            8px 4px;
+          background-position:
+            0 50%,
+            0 calc(0% - 2px),
+            0 calc(100% + 2px),
+            50% 50%,
+            50% calc(0% - 2px),
+            50% calc(100% + 2px),
+            100% 50%,
+            100% calc(50% - 2px),
+            100% calc(50% + 2px);
+        }
+        95%,
         100% {
-          transform: rotate(360deg);
+          background-size:
+            8px 100%,
+            8px 4px,
+            8px 4px,
+            8px 100%,
+            8px 4px,
+            8px 4px,
+            8px 100%,
+            8px 4px,
+            8px 4px;
+          background-position:
+            0 50%,
+            0 calc(0% - 2px),
+            0 calc(100% + 2px),
+            50% 50%,
+            50% calc(0% - 2px),
+            50% calc(100% + 2px),
+            100% 50%,
+            100% calc(0% - 2px),
+            100% calc(100% + 2px);
         }
       }
 
@@ -192,12 +278,12 @@
     </script>
 
     <!-- Resource hints for better performance -->
-    <link rel="preload" as="script" href="/src/main.ts" />
+    <link rel="modulepreload" href="/src/main.ts" />
   </head>
   <body class="bg-white">
     <!-- Loading state to prevent layout shift -->
     <div class="loading-container" id="loading">
-      <div class="loading-spinner"></div>
+      <div class="loader"></div>
     </div>
 
     <div id="app"></div>
