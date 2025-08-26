@@ -1,0 +1,21 @@
+User-agent: *
+Allow: /
+
+# Disallow crawling of 404 page
+Disallow: /404
+
+# Allow all search engines to crawl the site
+Crawl-delay: 1
+
+# Sitemap location
+Sitemap: https://abdullahmustapha.xyz/sitemap.xml
+
+# Additional guidelines for specific bots
+User-agent: Googlebot
+Allow: /
+
+User-agent: Bingbot
+Allow: /
+
+User-agent: Slurp
+Allow: /
