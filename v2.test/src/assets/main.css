@@ -411,3 +411,140 @@ body {
   width: 100% !important;
   height: 100% !important;
 }
+
+/* Global ResumeButton styles as backup */
+.resume-button-component {
+  position: relative !important;
+  display: inline-flex !important;
+  align-items: center !important;
+  gap: 0.5rem !important;
+  padding: 0.75rem 1.5rem !important;
+  background: linear-gradient(135deg, #667eea 0%, #764ba2 100%) !important;
+  color: white !important;
+  text-decoration: none !important;
+  border-radius: 0.5rem !important;
+  font-weight: 600 !important;
+  font-size: 0.875rem !important;
+  transition: all 0.3s cubic-bezier(0.4, 0, 0.2, 1) !important;
+  overflow: hidden !important;
+  transform: translateZ(0) !important;
+  will-change: transform !important;
+  border: none !important;
+  cursor: pointer !important;
+}
+
+.resume-button-component::before {
+  content: '' !important;
+  position: absolute !important;
+  top: 0 !important;
+  left: 0 !important;
+  right: 0 !important;
+  bottom: 0 !important;
+  background: linear-gradient(135deg, #764ba2 0%, #667eea 100%) !important;
+  opacity: 0 !important;
+  transition: opacity 0.3s ease !important;
+}
+
+.resume-button-component.resume-button-hovered::before,
+.resume-button-component:hover::before {
+  opacity: 1 !important;
+}
+
+.resume-button-content {
+  position: relative !important;
+  z-index: 2 !important;
+  display: flex !important;
+  align-items: center !important;
+  gap: 0.5rem !important;
+}
+
+.resume-button-icon-container {
+  display: flex !important;
+  align-items: center !important;
+  justify-content: center !important;
+}
+
+.resume-button-icon {
+  transition: transform 0.3s ease !important;
+  width: 20px !important;
+  height: 20px !important;
+}
+
+.resume-button-component.resume-button-hovered .resume-button-icon,
+.resume-button-component:hover .resume-button-icon {
+  transform: translateY(2px) !important;
+}
+
+.resume-button-text {
+  font-weight: 600 !important;
+  font-size: inherit !important;
+}
+
+.resume-button-particles {
+  position: absolute !important;
+  top: 0 !important;
+  left: 0 !important;
+  right: 0 !important;
+  bottom: 0 !important;
+  pointer-events: none !important;
+  z-index: 1 !important;
+  overflow: hidden !important;
+}
+
+.resume-button-particle {
+  position: absolute !important;
+  width: 3px !important;
+  height: 3px !important;
+  background: rgba(255, 255, 255, 0.8) !important;
+  border-radius: 50% !important;
+  pointer-events: none !important;
+  animation: resume-button-particle-float 1s ease-out forwards !important;
+}
+
+@keyframes resume-button-particle-float {
+  0% {
+    transform: translateY(0) !important;
+    opacity: 1 !important;
+  }
+  100% {
+    transform: translateY(-20px) !important;
+    opacity: 0 !important;
+  }
+}
+
+.resume-button-component:hover {
+  transform: translateY(-2px) !important;
+  box-shadow: 0 10px 25px rgba(102, 126, 234, 0.4) !important;
+}
+
+.resume-button-component:active {
+  transform: translateY(0) !important;
+  box-shadow: 0 5px 15px rgba(102, 126, 234, 0.3) !important;
+}
+
+/* Responsive design for ResumeButton */
+@media (max-width: 768px) {
+  .resume-button-component {
+    padding: 0.625rem 1.25rem !important;
+    font-size: 0.8125rem !important;
+  }
+
+  .resume-button-icon {
+    width: 18px !important;
+    height: 18px !important;
+  }
+}
+
+/* Reduce motion for accessibility */
+@media (prefers-reduced-motion: reduce) {
+  .resume-button-component,
+  .resume-button-icon,
+  .resume-button-particle {
+    transition: none !important;
+    animation: none !important;
+  }
+
+  .resume-button-particles {
+    display: none !important;
+  }
+}

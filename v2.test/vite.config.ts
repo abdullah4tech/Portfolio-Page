@@ -74,14 +74,27 @@ export default defineConfig({
         display: 'standalone',
         icons: [
           {
+            src: 'apple-touch-icon.svg',
+            sizes: '180x180',
+            type: 'image/svg+xml',
+            purpose: 'any maskable',
+          },
+          {
             src: 'icon-192.svg',
             sizes: '192x192',
             type: 'image/svg+xml',
+            purpose: 'any maskable',
           },
           {
             src: 'icon-512.svg',
             sizes: '512x512',
             type: 'image/svg+xml',
+            purpose: 'any maskable',
+          },
+          {
+            src: 'favicon.ico',
+            sizes: '32x32',
+            type: 'image/x-icon',
           },
         ],
       },
