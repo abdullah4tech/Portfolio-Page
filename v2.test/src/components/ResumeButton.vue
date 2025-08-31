@@ -89,7 +89,6 @@
 
 <script setup lang="ts">
 import { ref } from 'vue'
-
 const buttonRef = ref<HTMLAnchorElement>()
 const isHovered = ref(false)
 </script>
