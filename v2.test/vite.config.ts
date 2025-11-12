@@ -240,11 +240,6 @@ export default defineConfig({
   // CSS optimization
   css: {
     devSourcemap: process.env.NODE_ENV === 'development',
-    preprocessorOptions: {
-      css: {
-        charset: false,
-      },
-    },
   },
 
   // Enable experimental features for better performance

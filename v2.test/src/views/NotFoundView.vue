@@ -109,75 +109,7 @@ const randomMessage = errorMessages[Math.floor(Math.random() * errorMessages.len
         </ButtonComponent>
       </div>
 
-      <!-- Helpful Links -->
-      <div class="bg-white/50 backdrop-blur-md rounded-xl md:rounded-2xl p-4 md:p-8 shadow-lg mx-4">
-        <h3 class="text-xl md:text-2xl font-medium text-gray-900 mb-4 md:mb-6">
-          While you're here, explore these sections:
-        </h3>
-
-        <div class="grid grid-cols-1 md:grid-cols-3 gap-4 md:gap-6">
-          <a
-            href="/#projects"
-            class="group flex flex-col items-center p-4 md:p-6 bg-white/70 rounded-xl hover:bg-white/90 transition-all duration-300 hover:scale-105 hover:shadow-md"
-          >
-            <div
-              class="w-10 h-10 md:w-12 md:h-12 bg-gray-800/10 rounded-full flex items-center justify-center mb-3 md:mb-4 group-hover:bg-gray-800/20 transition-colors duration-300"
-            >
-              <GitBranch class="w-5 h-5 md:w-6 md:h-6 text-gray-700" />
-            </div>
-            <h4 class="font-medium text-gray-900 mb-1 md:mb-2 text-sm md:text-base">
-              Recent Projects
-            </h4>
-            <p class="text-xs md:text-sm text-gray-600 text-center">
-              Check out my latest work and contributions
-            </p>
-          </a>
-
-          <a
-            href="/#about"
-            class="group flex flex-col items-center p-4 md:p-6 bg-white/70 rounded-xl hover:bg-white/90 transition-all duration-300 hover:scale-105 hover:shadow-md"
-          >
-            <div
-              class="w-10 h-10 md:w-12 md:h-12 bg-gray-800/10 rounded-full flex items-center justify-center mb-3 md:mb-4 group-hover:bg-gray-800/20 transition-colors duration-300"
-            >
-              <Search class="w-5 h-5 md:w-6 md:h-6 text-gray-700" />
-            </div>
-            <h4 class="font-medium text-gray-900 mb-1 md:mb-2 text-sm md:text-base">About Me</h4>
-            <p class="text-xs md:text-sm text-gray-600 text-center">
-              Learn more about my background and skills
-            </p>
-          </a>
-
-          <a
-            href="mailto:abdullahmu4life@gmail.com"
-            class="group flex flex-col items-center p-4 md:p-6 bg-white/70 rounded-xl hover:bg-white/90 transition-all duration-300 hover:scale-105 hover:shadow-md"
-          >
-            <div
-              class="w-10 h-10 md:w-12 md:h-12 bg-gray-800/10 rounded-full flex items-center justify-center mb-3 md:mb-4 group-hover:bg-gray-800/20 transition-colors duration-300"
-            >
-              <svg
-                class="w-5 h-5 md:w-6 md:h-6 text-gray-700"
-                fill="none"
-                stroke="currentColor"
-                viewBox="0 0 24 24"
-              >
-                <path
-                  stroke-linecap="round"
-                  stroke-linejoin="round"
-                  stroke-width="2"
-                  d="M3 8l7.89 4.26a2 2 0 002.22 0L21 8M5 19h14a2 2 0 002-2V7a2 2 0 00-2-2H5a2 2 0 00-2 2v10a2 2 0 002 2z"
-                />
-              </svg>
-            </div>
-            <h4 class="font-medium text-gray-900 mb-1 md:mb-2 text-sm md:text-base">
-              Get in Touch
-            </h4>
-            <p class="text-xs md:text-sm text-gray-600 text-center">
-              Let's connect and discuss opportunities
-            </p>
-          </a>
-        </div>
-      </div>
+      
 
       <!-- Fun Easter Egg -->
       <div class="mt-8 md:mt-12 px-4">

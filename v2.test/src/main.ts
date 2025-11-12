@@ -10,4 +10,12 @@ const head = createHead()
 
 app.use(head)
 app.use(router)
-app.mount('#app')
+
+// Ensure DOM is ready before mounting
+if (document.readyState === 'loading') {
+  document.addEventListener('DOMContentLoaded', () => {
+    app.mount('#app')
+  })
+} else {
+  app.mount('#app')
+}

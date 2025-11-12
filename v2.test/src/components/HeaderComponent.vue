@@ -41,16 +41,16 @@ onUnmounted(() => {
 
 <template>
   <header
-    class="fixed top-0 left-0 w-full z-50 flex text-[20px] items-center justify-between py-4 px-5 md:px-15"
+    class="fixed top-0 left-0 w-full z-50 flex items-center justify-between py-3 px-4 sm:py-4 sm:px-6 md:px-8 lg:px-12 xl:px-15"
   >
     <!-- Logo -->
     <div>
-      <span class="text-lg">Abdullah.</span>
+      <span class="text-base sm:text-lg md:text-xl font-medium">Abdullah.</span>
     </div>
 
     <!-- Desktop Navigation (Original Design) -->
-    <nav class="hidden md:flex py-2 px-5 justify-center rounded-full backdrop-blur-md">
-      <ul class="flex items-center gap-5 text-[15px] text-gray-500">
+    <nav class="hidden md:flex py-2 px-4 lg:px-5 justify-center rounded-full backdrop-blur-md">
+      <ul class="flex items-center gap-3 lg:gap-5 text-sm lg:text-[15px] text-gray-500">
         <li>
           <a href="#" class="hover:text-gray-800 transition-colors duration-200">Blogs</a>
         </li>
@@ -62,12 +62,12 @@ onUnmounted(() => {
         </li>
         <li>
           <a href="#" class="text-gray-400 hover:text-gray-800 transition-colors duration-200">
-            <CameraIcon class="size-4" />
+            <CameraIcon class="w-4 h-4" />
           </a>
         </li>
         <li>
           <a href="#" class="text-gray-400 hover:text-gray-800 transition-colors duration-200">
-            <GithubIcon class="size-4" />
+            <GithubIcon class="w-4 h-4" />
           </a>
         </li>
         <li>
@@ -76,8 +76,8 @@ onUnmounted(() => {
             v-on:click="toggleTheme"
             class="text-gray-400 hover:text-gray-800 transition-colors duration-200"
           >
-            <SunIcon v-if="isDark" class="size-4" />
-            <MoonIcon v-else class="size-4" />
+            <SunIcon v-if="isDark" class="w-4 h-4" />
+            <MoonIcon v-else class="w-4 h-4" />
           </a>
         </li>
       </ul>
