@@ -1,7 +1,8 @@
 @import 'tailwindcss';
 
 :root {
-  --font-sans: 'Yantramanav', sans-serif;
+  --font-sans: 'Outfit', sans-serif;
+  --font-mono: 'Fira Code', monospace;
 }
 
 html {
@@ -13,28 +14,6 @@ html {
 body {
   font-family: var(--font-sans);
   @apply bg-white text-gray-900 overflow-x-hidden min-h-screen selection:bg-gray-200 selection:text-gray-900;
-}
-
-/* Glassmorphism Utilities */
-.glass {
-  @apply bg-white/70 backdrop-blur-lg border border-gray-200 shadow-sm;
-}
-
-.glass-dark {
-  @apply bg-gray-900/70 backdrop-blur-lg border border-gray-700/30 shadow-lg text-white;
-}
-
-/* Custom Scrollbar */
-::-webkit-scrollbar {
-  width: 8px;
-}
-
-::-webkit-scrollbar-track {
-  @apply bg-transparent;
-}
-
-::-webkit-scrollbar-thumb {
-  @apply bg-gray-300 rounded-full hover:bg-gray-400 transition-colors;
 }
 
 /* Typography */
@@ -49,49 +28,4 @@ h6 {
 
 p {
   @apply leading-relaxed text-gray-600;
-}
-
-/* Animations */
-.hover-lift {
-  @apply transition-transform duration-300 hover:-translate-y-1 hover:shadow-lg;
-}
-
-@keyframes float {
-  0%,
-  100% {
-    transform: translateY(0);
-  }
-  50% {
-    transform: translateY(-10px);
-  }
-}
-@keyframes fadeIn {
-  0% {
-    opacity: 0;
-  }
-  100% {
-    opacity: 1;
-  }
-}
-@keyframes slideUp {
-  0% {
-    transform: translateY(20px);
-    opacity: 0;
-  }
-  100% {
-    transform: translateY(0);
-    opacity: 1;
-  }
-}
-
-.animate-float {
-  animation: float 6s ease-in-out infinite;
-}
-
-.animate-fade-in {
-  animation: fadeIn 0.5s ease-out forwards;
-}
-
-.animate-slide-up {
-  animation: slideUp 0.5s ease-out forwards;
 }
