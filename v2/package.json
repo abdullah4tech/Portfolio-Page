@@ -5,7 +5,6 @@
   "type": "module",
   "packageManager": "bun@1.0.0",
   "scripts": {
-    "preinstall": "node scripts/enforce-bun.js",
     "dev": "bunx --bun vite",
     "build": "bun run build-only",
     "preview": "bunx --bun vite preview",
