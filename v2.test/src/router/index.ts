@@ -18,6 +18,33 @@ const routes: RouteRecordRaw[] = [
     },
   },
   {
+    path: '/blog',
+    name: 'Blog',
+    component: () => import('../views/BlogView.vue'),
+    meta: {
+      title: 'Blog | Abdullah O. Mustapha',
+      description: 'Thoughts, stories and ideas.',
+    },
+  },
+  {
+    path: '/projects',
+    name: 'Projects',
+    component: () => import('../views/WIPView.vue'),
+    meta: {
+      title: 'Projects | Abdullah O. Mustapha',
+      description: 'A collection of projects I have worked on.',
+    },
+  },
+  {
+    path: '/talks',
+    name: 'Talks',
+    component: () => import('../views/WIPView.vue'),
+    meta: {
+      title: 'Talks | Abdullah O. Mustapha',
+      description: 'Recordings and materials from talks I have given.',
+    },
+  },
+  {
     path: '/404',
     name: 'NotFound',
     component: () => import('../views/NotFoundView.vue'),

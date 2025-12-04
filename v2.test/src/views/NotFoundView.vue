@@ -1,8 +1,7 @@
 <script setup lang="ts">
-import { ArrowLeft, Home, Search, GitBranch } from 'lucide-vue-next'
+import { ArrowLeft, Home } from 'lucide-vue-next'
 import { useHead } from '@vueuse/head'
 import { useRouter } from 'vue-router'
-import ButtonComponent from '../components/ButtonComponent.vue'
 
 const router = useRouter()
 
@@ -86,31 +85,24 @@ const randomMessage = errorMessages[Math.floor(Math.random() * errorMessages.len
       <div
         class="flex flex-col sm:flex-row items-center justify-center gap-3 md:gap-4 mb-12 md:mb-16 px-4"
       >
-        <ButtonComponent
-          variant="primary"
-          size="md"
-          :icon="Home"
-          icon-position="left"
-          aria-label="Go to homepage"
+        <button
           @click="goHome"
+          class="inline-flex items-center justify-center gap-2 px-6 py-3 bg-gray-900 text-white rounded-lg hover:bg-gray-800 transition-colors font-medium"
+          aria-label="Go to homepage"
         >
+          <Home class="w-5 h-5" />
           Go Home
-        </ButtonComponent>
+        </button>
 
-        <ButtonComponent
-          variant="secondary"
-          size="md"
-          :icon="ArrowLeft"
-          icon-position="left"
-          aria-label="Go back to previous page"
+        <button
           @click="goBack"
+          class="inline-flex items-center justify-center gap-2 px-6 py-3 bg-white border border-gray-200 text-gray-700 rounded-lg hover:bg-gray-50 transition-colors font-medium"
+          aria-label="Go back to previous page"
         >
+          <ArrowLeft class="w-5 h-5" />
           Go Back
-        </ButtonComponent>
+        </button>
       </div>
-
-      
-
       <!-- Fun Easter Egg -->
       <div class="mt-8 md:mt-12 px-4">
         <p class="text-xs md:text-sm text-gray-500 italic">
