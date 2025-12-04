@@ -1,13 +1,6 @@
 <script setup lang="ts">
 import { useHead } from '@vueuse/head'
-import {
-  ComputerDesktopIcon,
-  CodeBracketIcon,
-  CircleStackIcon,
-  GlobeAltIcon,
-  CommandLineIcon,
-} from '@heroicons/vue/24/outline'
-import { Github } from 'lucide-vue-next'
+import { Monitor, Code, Database, Globe, Terminal, Github } from 'lucide-vue-next'
 
 useHead({
   title: 'Abdullah O. Mustapha',
@@ -32,19 +25,19 @@ useHead({
             href="#"
             class="inline-flex items-center gap-1 px-2 py-0.5 bg-gray-100 rounded text-gray-700 font-medium hover:bg-gray-200 transition-colors"
           >
-            <ComputerDesktopIcon class="w-3 h-3" /> DropX
+            <Monitor class="w-3 h-3" /> DropX
           </a>
           <a
             href="#"
             class="inline-flex items-center gap-1 px-2 py-0.5 bg-gray-100 rounded text-gray-700 font-medium hover:bg-gray-200 transition-colors"
           >
-            <ComputerDesktopIcon class="w-3 h-3" /> Geneline
+            <Monitor class="w-3 h-3" /> Geneline
           </a>
           <a
             href="#"
             class="inline-flex items-center gap-1 px-2 py-0.5 bg-gray-100 rounded text-gray-700 font-medium hover:bg-gray-200 transition-colors"
           >
-            <ComputerDesktopIcon class="w-3 h-3" /> CODE(NIIT)
+            <Monitor class="w-3 h-3" /> CODE(NIIT)
           </a>
         </div>
 
@@ -55,21 +48,21 @@ useHead({
             target="_blank"
             class="inline-flex items-center gap-1 px-2 py-0.5 bg-blue-50 text-blue-700 rounded hover:bg-blue-100 transition-colors"
           >
-            <CodeBracketIcon class="w-3 h-3" /> CODEX
+            <Code class="w-3 h-3" /> CODEX
           </a>
           <a
             href="https://github.com/abdullah4tech/doksAI"
             target="_blank"
             class="inline-flex items-center gap-1 px-2 py-0.5 bg-green-50 text-green-700 rounded hover:bg-green-100 transition-colors"
           >
-            <CircleStackIcon class="w-3 h-3" /> doksAI
+            <Database class="w-3 h-3" /> doksAI
           </a>
           <a
             href="https://github.com/n8bird-oss/zenon-router"
             target="_blank"
             class="inline-flex items-center gap-1 px-2 py-0.5 bg-orange-50 text-orange-700 rounded hover:bg-orange-100 transition-colors"
           >
-            <GlobeAltIcon class="w-3 h-3" /> Zenon Router
+            <Globe class="w-3 h-3" /> Zenon Router
           </a>
         </div>
 
@@ -78,17 +71,17 @@ useHead({
           <span
             class="inline-flex items-center gap-1 px-2 py-0.5 bg-gray-100 rounded text-gray-600 font-mono text-xs"
           >
-            <CommandLineIcon class="w-3 h-3" /> Vue
+            <Terminal class="w-3 h-3" /> Vue
           </span>
           <span
             class="inline-flex items-center gap-1 px-2 py-0.5 bg-gray-100 rounded text-gray-600 font-mono text-xs"
           >
-            <CommandLineIcon class="w-3 h-3" /> TypeScript
+            <Terminal class="w-3 h-3" /> TypeScript
           </span>
           <span
             class="inline-flex items-center gap-1 px-2 py-0.5 bg-gray-100 rounded text-gray-600 font-mono text-xs"
           >
-            <CommandLineIcon class="w-3 h-3" /> Node.js
+            <Terminal class="w-3 h-3" /> Node.js
           </span>
         </div>
       </div>

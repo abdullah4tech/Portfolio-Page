@@ -1,7 +1,6 @@
 <script setup lang="ts">
 import { RouterView } from 'vue-router'
-import { MoonIcon } from '@heroicons/vue/24/outline'
-import { Github, Twitter } from 'lucide-vue-next'
+import { Github, Twitter, Moon } from 'lucide-vue-next'
 import FractalBackground from './components/FractalBackground.vue'
 </script>
 
@@ -40,7 +39,7 @@ import FractalBackground from './components/FractalBackground.vue'
           <Github class="w-4 h-4" />
         </a>
         <button class="hover:text-gray-900 transition-colors">
-          <MoonIcon class="w-4 h-4" />
+          <Moon class="w-4 h-4" />
         </button>
       </div>
     </header>
