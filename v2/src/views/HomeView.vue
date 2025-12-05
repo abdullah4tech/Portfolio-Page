@@ -6,20 +6,63 @@ useHead({
   title: 'Abdullah O. Mustapha',
   meta: [{ name: 'description', content: 'Software Engineer & Open Sourcerer' }],
 })
+
+// Animation variants
+const fadeInUp = {
+  initial: {
+    opacity: 0,
+    y: 30,
+  },
+  enter: {
+    opacity: 1,
+    y: 0,
+    transition: {
+      duration: 600,
+      ease: 'easeOut',
+    },
+  },
+}
+
+const staggerContainer = {
+  initial: {
+    opacity: 0,
+  },
+  enter: {
+    opacity: 1,
+    transition: {
+      staggerChildren: 100,
+    },
+  },
+}
+
+const scaleIn = {
+  initial: {
+    opacity: 0,
+    scale: 0.9,
+  },
+  enter: {
+    opacity: 1,
+    scale: 1,
+    transition: {
+      duration: 500,
+      ease: 'easeOut',
+    },
+  },
+}
 </script>
 
 <template>
   <div class="space-y-10">
     <!-- Header / Intro -->
-    <section class="space-y-6">
+    <section v-motion="fadeInUp" class="space-y-6">
       <h1 class="text-3xl font-bold text-gray-900">Abdullah O. Mustapha</h1>
       <p class="text-gray-600 leading-relaxed">
         Hey! I'm Abdullah, a fanatical open sourcerer and software engineer.
       </p>
 
       <!-- Badges -->
-      <div class="space-y-2 text-sm text-gray-600">
-        <div class="flex flex-wrap items-center gap-2">
+      <div v-motion="staggerContainer" class="space-y-2 text-sm text-gray-600">
+        <div v-motion="scaleIn" class="flex flex-wrap items-center gap-2">
           <span>Working at</span>
           <a
             href="#"
@@ -41,17 +84,17 @@ useHead({
           </a>
         </div>
 
-        <div class="flex flex-wrap items-center gap-2">
+        <div v-motion="scaleIn" class="flex flex-wrap items-center gap-2">
           <span>Creator of</span>
           <a
-            href="https://github.com/abdullah4tech/codex"
+            href="https://github.com/n8bird-oss/fsh"
             target="_blank"
             class="inline-flex items-center gap-1 px-2 py-0.5 bg-blue-50 text-blue-700 rounded hover:bg-blue-100 transition-colors"
           >
-            <Code class="w-3 h-3" /> CODEX
+            <Code class="w-3 h-3" /> fsh
           </a>
           <a
-            href="https://github.com/abdullah4tech/doksAI"
+            href="https://doks-ai.vercel.app"
             target="_blank"
             class="inline-flex items-center gap-1 px-2 py-0.5 bg-green-50 text-green-700 rounded hover:bg-green-100 transition-colors"
           >
@@ -66,7 +109,7 @@ useHead({
           </a>
         </div>
 
-        <div class="flex flex-wrap items-center gap-2">
+        <div v-motion="scaleIn" class="flex flex-wrap items-center gap-2">
           <span>Stack</span>
           <span
             class="inline-flex items-center gap-1 px-2 py-0.5 bg-gray-100 rounded text-gray-600 font-mono text-xs"
@@ -88,7 +131,13 @@ useHead({
     </section>
 
     <!-- Long form text -->
-    <section class="space-y-6 text-gray-600 leading-relaxed">
+    <section
+      v-motion="{
+        initial: { opacity: 0, y: 40 },
+        enter: { opacity: 1, y: 0, transition: { duration: 700, delay: 200 } },
+      }"
+      class="space-y-6 text-gray-600 leading-relaxed"
+    >
       <p>
         Dreaming up cool ideas and making them come true is where my passion lies. I am enthusiastic
         about building tools that help myself and others to be more productive and enjoy the process
@@ -97,15 +146,14 @@ useHead({
       <p>
         Currently, I am balancing my time between multiple exciting roles. At
         <span class="text-gray-900 font-medium">DropX</span>, I'm helping build logistics solutions
-        for the future. With <span class="text-gray-900 font-medium">Geneline</span>, I'm exploring
-        the intersection of technology and genomics. And at
+        for the future. With <span class="text-gray-900 font-medium">Geneline</span>, an AI company, I work on backend development and infrastructure integration. And at
         <span class="text-gray-900 font-medium">CODE(NIIT)</span>, I have the privilege of mentoring
         the next generation of developers.
       </p>
       <p>
         My personal focus remains on building
         <a
-          href="https://github.com/abdullah4tech/doksAI"
+          href="https://doks-ai.vercel.app"
           class="text-gray-900 font-medium underline decoration-gray-300 underline-offset-4"
           >Doks AI</a
         >
@@ -141,10 +189,22 @@ useHead({
       </p>
     </section>
 
-    <div class="w-10 h-px bg-gray-200 my-8"></div>
+    <div
+      v-motion="{
+        initial: { scaleX: 0 },
+        enter: { scaleX: 1, transition: { duration: 800, delay: 300 } },
+      }"
+      class="w-10 h-px bg-gray-200 my-8 origin-left"
+    ></div>
 
     <!-- Find me on -->
-    <section class="space-y-4">
+    <section
+      v-motion="{
+        initial: { opacity: 0, y: 30 },
+        enter: { opacity: 1, y: 0, transition: { duration: 600, delay: 400 } },
+      }"
+      class="space-y-4"
+    >
       <h2 class="text-sm font-medium text-gray-900">Find me on</h2>
       <div class="flex flex-wrap gap-x-4 gap-y-2 text-gray-600">
         <a
@@ -237,10 +297,22 @@ useHead({
       </p>
     </section>
 
-    <div class="w-10 h-px bg-gray-200 my-8"></div>
+    <div
+      v-motion="{
+        initial: { scaleX: 0 },
+        enter: { scaleX: 1, transition: { duration: 800, delay: 500 } },
+      }"
+      class="w-10 h-px bg-gray-200 my-8 origin-left"
+    ></div>
 
     <!-- Sponsor Section -->
-    <section class="space-y-6">
+    <section
+      v-motion="{
+        initial: { opacity: 0, y: 30 },
+        enter: { opacity: 1, y: 0, transition: { duration: 600, delay: 600 } },
+      }"
+      class="space-y-6"
+    >
       <p class="text-gray-600 leading-relaxed">
         If you enjoy my work and find them useful, consider sponsor me and the ecosystem to help
         Open Source sustainable. Thank you!
@@ -299,7 +371,13 @@ useHead({
     </section>
 
     <!-- Footer -->
-    <footer class="pt-10 text-sm text-gray-400">
+    <footer
+      v-motion="{
+        initial: { opacity: 0 },
+        enter: { opacity: 1, transition: { duration: 1000, delay: 700 } },
+      }"
+      class="pt-10 text-sm text-gray-400"
+    >
       <p>CC BY-NC-SA 4.0 2025 -PRESENT © Abdullah O. Mustapha</p>
     </footer>
   </div>
