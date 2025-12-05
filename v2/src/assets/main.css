@@ -16,6 +16,38 @@ body {
   @apply bg-white text-gray-900 overflow-x-hidden min-h-screen selection:bg-gray-200 selection:text-gray-900;
 }
 
+/* Custom Scrollbar */
+::-webkit-scrollbar {
+  width: 12px;
+  height: 12px;
+}
+
+::-webkit-scrollbar-track {
+  background: #f9fafb;
+  border-radius: 10px;
+}
+
+::-webkit-scrollbar-thumb {
+  background: #d1d5db;
+  border-radius: 10px;
+  border: 2px solid #f9fafb;
+  transition: background 0.2s ease;
+}
+
+::-webkit-scrollbar-thumb:hover {
+  background: #9ca3af;
+}
+
+::-webkit-scrollbar-thumb:active {
+  background: #6b7280;
+}
+
+/* Firefox */
+* {
+  scrollbar-width: thin;
+  scrollbar-color: #d1d5db #f9fafb;
+}
+
 /* Typography */
 h1,
 h2,
