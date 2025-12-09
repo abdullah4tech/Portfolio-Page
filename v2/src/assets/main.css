@@ -1,7 +1,7 @@
 @import 'tailwindcss';
 
 :root {
-  --font-sans: 'Outfit', sans-serif;
+  --font-sans: 'Inter', system-ui, -apple-system, sans-serif;
   --font-mono: 'Fira Code', monospace;
 }
 
@@ -9,6 +9,8 @@ html {
   scroll-behavior: smooth;
   -webkit-font-smoothing: antialiased;
   -moz-osx-font-smoothing: grayscale;
+  font-feature-settings: 'cv11', 'ss01';
+  font-variation-settings: 'wght' 400;
 }
 
 body {
