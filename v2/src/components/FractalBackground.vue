@@ -39,9 +39,10 @@ onMounted(() => {
     const endX = x + length * Math.cos(angle)
     const endY = y + length * Math.sin(angle)
 
-    // Random control point for curve
-    const ctrlX = (x + endX) / 2 + (Math.random() - 0.5) * length * 0.25
-    const ctrlY = (y + endY) / 2 + (Math.random() - 0.5) * length * 0.25
+    // More organic, flowing curves with better control points
+    const curveIntensity = 0.3 + Math.random() * 0.2
+    const ctrlX = (x + endX) / 2 + (Math.random() - 0.5) * length * curveIntensity
+    const ctrlY = (y + endY) / 2 + (Math.random() - 0.5) * length * curveIntensity
 
     return {
       startX: x,
@@ -53,7 +54,7 @@ onMounted(() => {
       depth,
       width,
       progress: 0,
-      speed: 0.015 + Math.random() * 0.015, // Slower, more elegant speed
+      speed: 0.012 + Math.random() * 0.018, // Varied speed for more organic feel
       angle,
       length,
     }
@@ -115,32 +116,46 @@ onMounted(() => {
       ctx.moveTo(p1.x, p1.y)
       ctx.lineTo(p2.x, p2.y)
 
-      // Style
-      const opacity = 0.2 + (branch.depth / 8) * 0.3 // Slightly increased opacity to balance lighter color
-      ctx.strokeStyle = `rgba(210, 210, 220, ${opacity})` // Lighter grey
+      // More artistic style with gradient-like opacity
+      const depthFactor = branch.depth / 9
+      const opacity = 0.15 + depthFactor * 0
+
+      // Softer, more elegant color - subtle gray with slight warmth
+      ctx.strokeStyle = `rgba(180, 185, 195, ${opacity})`
       ctx.lineWidth = branch.width
       ctx.lineCap = 'round'
+      ctx.lineJoin = 'round'
       ctx.stroke()
+
+      // Add subtle glow effect for deeper branches (more artistic)
+      if (branch.depth > 5) {
+        ctx.shadowBlur = 3
+        ctx.shadowColor = `rgba(180, 185, 195, ${opacity * 0.3})`
+      } else {
+        ctx.shadowBlur = 0
+      }
 
       if (branch.progress >= 1) {
         // Branch finished, spawn children
         activeBranches.splice(i, 1) // Remove finished branch
 
         if (branch.depth > 0) {
-          const numChildren = Math.random() > 0.3 ? 2 : 3
+          // More natural branching pattern
+          const numChildren = branch.depth > 6 ? 2 : Math.random() > 0.4 ? 2 : 3
 
           for (let c = 0; c < numChildren; c++) {
-            const angleVariation = (Math.random() - 0.5) * 1.0
-            const lengthVariation = 0.6 + Math.random() * 0.3
+            // More varied, organic angles
+            const angleVariation = (Math.random() - 0.5) * 1.2
+            const lengthVariation = 0.55 + Math.random() * 0.35
 
             nextBranches.push(
               createBranch(
                 branch.endX,
                 branch.endY,
-                branch.length * lengthVariation * 0.75,
+                branch.length * lengthVariation * 0.72,
                 branch.angle + angleVariation,
                 branch.depth - 1,
-                branch.width * 0.8,
+                branch.width * 0.75, // Thinner taper for more delicate look
               ),
             )
           }
@@ -164,14 +179,22 @@ onMounted(() => {
     ctx.clearRect(0, 0, canvas.width, canvas.height)
     activeBranches = []
 
-    // Start big branches from edges - One Top, One Bottom
-    const maxDepth = 9
+    // Responsive sizing for mobile - much more minimal
+    const isMobile = window.innerWidth < 768
+    const branchLength = isMobile ? 35 : 200 // Much shorter on mobile
+    const maxDepth = isMobile ? 4 : 9  // Less branching depth
+    const branchWidth = isMobile ? 0.4 : 1.5
 
-    // Top Right - growing down and left
-    activeBranches.push(createBranch(canvas.width, 0, 320, Math.PI * 0.75, maxDepth, 1.5))
-
-    // Bottom Left - growing up and right
-    activeBranches.push(createBranch(0, canvas.height, 320, -Math.PI / 4, maxDepth, 1.5))
+    if (isMobile) {
+      // Mobile: Single branch from left side growing right and slightly down
+      activeBranches.push(
+        createBranch(0, canvas.height * 0.35, branchLength, Math.PI * 0.1, maxDepth, branchWidth)
+      )
+    } else {
+      // Desktop: Original two corners
+      activeBranches.push(createBranch(canvas.width, 0, branchLength, Math.PI * 0.75, maxDepth, branchWidth))
+      activeBranches.push(createBranch(0, canvas.height, branchLength, -Math.PI / 4, maxDepth, branchWidth))
+    }
 
     animate()
   }
