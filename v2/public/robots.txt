@@ -8,7 +8,7 @@ Disallow: /404
 Crawl-delay: 1
 
 # Sitemap location
-Sitemap: https://abdullahmustapha.xyz/sitemap.xml
+Sitemap: https://www.abdullahmustapha.xyz/sitemap.xml
 
 # Additional guidelines for specific bots
 User-agent: Googlebot
