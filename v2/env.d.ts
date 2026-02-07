@@ -1,5 +1,13 @@
 /// <reference types="vite/client" />
 
+import type Lenis from 'lenis'
+
+declare global {
+  interface Window {
+    __lenis: Lenis
+  }
+}
+
 declare module '*.svg?component' {
   import type { DefineComponent } from 'vue'
   const component: DefineComponent
