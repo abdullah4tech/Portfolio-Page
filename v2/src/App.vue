@@ -13,7 +13,7 @@ import MobileBottomNav from './components/MobileBottomNav.vue'
     <DesktopNav />
     <MobileBottomNav />
 
-    <main class="max-w-2xl mx-auto px-5 sm:px-6 lg:px-8 pt-2 sm:pt-0 pb-12 sm:pb-20">
+    <main class="max-w-2xl lg:max-w-3xl mx-auto px-5 sm:px-6 lg:px-8 pt-2 sm:pt-0 pb-12 sm:pb-20">
       <RouterView />
     </main>
   </div>
