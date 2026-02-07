@@ -7,10 +7,10 @@ import { gsap } from 'gsap'
 const route = useRoute()
 
 const links = [
-  { name: 'Home', to: '/', icon: 'ph:house-duotone', activeIcon: 'ph:house-fill' },
+  { name: 'Home', to: '/', icon: 'solar:home-smile-angle-linear', activeIcon: 'solar:home-smile-angle-bold' },
   { name: 'Projects', to: '/projects', icon: 'ph:rocket-duotone', activeIcon: 'ph:rocket-fill' },
-  { name: 'Blog', to: '/blog', icon: 'ph:article-duotone', activeIcon: 'ph:article-fill' },
-  { name: 'Photos', to: '/photos', icon: 'ph:camera-duotone', activeIcon: 'ph:camera-fill' },
+  { name: 'Blog', to: '/blog', icon: 'solar:document-linear', activeIcon: 'solar:document-bold' },
+  { name: 'Photos', to: '/photos', icon: 'solar:gallery-wide-line-duotone', activeIcon: 'solar:gallery-wide-bold-duotone' },
 ]
 
 const isActive = (to: string) => {
