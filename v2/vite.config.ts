@@ -170,6 +170,16 @@ export default defineConfig({
             return 'ui-libs'
           }
 
+          // Blog / Markdown
+          if (id.includes('shiki') || id.includes('markdown-it') || id.includes('gray-matter')) {
+            return 'blog-vendor'
+          }
+
+          // Giscus
+          if (id.includes('@giscus')) {
+            return 'giscus'
+          }
+
           // Particles (heavy library) - though removed, keeping for future
           if (id.includes('tsparticles') || id.includes('vue3-particles')) {
             return 'particles'
@@ -226,6 +236,8 @@ export default defineConfig({
       '@vueuse/head',
       '@vueuse/motion',
       'lucide-vue-next',
+      'markdown-it',
+      'gray-matter',
     ],
     exclude: ['tsparticles', 'vue3-particles'],
   },
