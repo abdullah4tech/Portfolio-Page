@@ -27,6 +27,15 @@ const routes: RouteRecordRaw[] = [
     },
   },
   {
+    path: '/blog/:slug',
+    name: 'BlogPost',
+    component: () => import('../views/BlogPostView.vue'),
+    meta: {
+      title: 'Blog | Abdullah O. Mustapha',
+      description: 'A blog post by Abdullah O. Mustapha.',
+    },
+  },
+  {
     path: '/projects',
     name: 'Projects',
     component: () => import('../views/ProjectsView.vue'),
@@ -47,10 +56,10 @@ const routes: RouteRecordRaw[] = [
   {
     path: '/photos',
     name: 'Photos',
-    component: () => import('../views/WIPView.vue'),
+    component: () => import('../views/PhotosView.vue'),
     meta: {
       title: 'Photos | Abdullah O. Mustapha',
-      description: 'Photography and visual moments.',
+      description: 'A curated collection of photography — landscapes, cities, and quiet moments.',
     },
   },
   {
