@@ -171,13 +171,18 @@ export default defineConfig({
           }
 
           // Blog / Markdown
-          if (id.includes('shiki') || id.includes('markdown-it') || id.includes('gray-matter')) {
+          if (id.includes('shiki') || id.includes('markdown-it')) {
             return 'blog-vendor'
           }
 
           // Giscus
           if (id.includes('@giscus')) {
             return 'giscus'
+          }
+
+          // Photo gallery
+          if (id.includes('photoswipe') || id.includes('masonry-layout') || id.includes('imagesloaded')) {
+            return 'gallery-vendor'
           }
 
           // Particles (heavy library) - though removed, keeping for future
@@ -237,7 +242,9 @@ export default defineConfig({
       '@vueuse/motion',
       'lucide-vue-next',
       'markdown-it',
-      'gray-matter',
+      'photoswipe',
+      'masonry-layout',
+      'imagesloaded',
     ],
     exclude: ['tsparticles', 'vue3-particles'],
   },
