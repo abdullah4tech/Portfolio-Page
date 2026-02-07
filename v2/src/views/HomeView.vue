@@ -1,6 +1,7 @@
 <script setup lang="ts">
 import { useHead } from '@vueuse/head'
 import { Icon } from '@iconify/vue'
+import GitHubGraph from '@/components/GitHubGraph.vue'
 import { onMounted, onUnmounted, ref, nextTick } from 'vue'
 import { gsap } from 'gsap'
 import { ScrollTrigger } from 'gsap/ScrollTrigger'
@@ -48,6 +49,7 @@ const socials = [
 
 const heroSection = ref<HTMLElement | null>(null)
 const aboutSection = ref<HTMLElement | null>(null)
+const githubSection = ref<HTMLElement | null>(null)
 const projectsSection = ref<HTMLElement | null>(null)
 const contactSection = ref<HTMLElement | null>(null)
 const sponsorSection = ref<HTMLElement | null>(null)
@@ -96,6 +98,24 @@ onMounted(async () => {
           y: 32,
           opacity: 0,
           duration: 0.9,
+          ease: 'power2.out',
+        })
+      })
+    }
+
+    /* ─── GitHub graph: Fade in on scroll ─── */
+    const githubEls = githubSection.value?.querySelectorAll('[data-scroll]')
+    if (githubEls?.length) {
+      githubEls.forEach((el) => {
+        gsap.from(el, {
+          scrollTrigger: {
+            trigger: el,
+            start: 'top 90%',
+            toggleActions: 'play none none none',
+          },
+          y: 24,
+          opacity: 0,
+          duration: 0.8,
           ease: 'power2.out',
         })
       })
@@ -222,6 +242,14 @@ onUnmounted(() => {
         <span class="text-gray-700">Freetown, Sierra Leone</span> to pursue my studies
         in 2022. If you're around, let's grab coffee.
       </p>
+    </section>
+
+    <!-- ═══ GitHub ═══ -->
+    <section ref="githubSection" class="space-y-5">
+      <h2 data-scroll class="text-xs sm:text-sm font-semibold tracking-[0.2em] text-gray-400 uppercase">Contribution Graph</h2>
+      <div data-scroll>
+        <GitHubGraph username="abdullah4tech" :join-year="2022" />
+      </div>
     </section>
 
     <!-- ═══ Projects ═══ -->
