@@ -1,16 +1,32 @@
 @import 'tailwindcss';
+@import 'lenis/css';
 
 :root {
-  --font-sans: 'Inter', system-ui, -apple-system, sans-serif;
-  --font-mono: 'Fira Code', monospace;
+  --font-sans: 'Inter', system-ui, -apple-system, BlinkMacSystemFont, sans-serif;
+  --font-mono: 'Fira Code', 'SF Mono', 'Menlo', monospace;
 }
 
 html {
-  scroll-behavior: smooth;
   -webkit-font-smoothing: antialiased;
   -moz-osx-font-smoothing: grayscale;
   font-feature-settings: 'cv11', 'ss01';
   font-variation-settings: 'wght' 400;
+}
+
+html.lenis, html.lenis body {
+  height: auto;
+}
+
+.lenis.lenis-smooth {
+  scroll-behavior: auto !important;
+}
+
+.lenis.lenis-smooth [data-lenis-prevent] {
+  overscroll-behavior: contain;
+}
+
+.lenis.lenis-stopped {
+  overflow: hidden;
 }
 
 body {
@@ -18,39 +34,31 @@ body {
   @apply bg-white text-gray-900 overflow-x-hidden min-h-screen selection:bg-gray-200 selection:text-gray-900;
 }
 
-/* Custom Scrollbar */
+/* Scrollbar — invisible but functional */
 ::-webkit-scrollbar {
-  width: 12px;
-  height: 12px;
+  width: 6px;
+  height: 6px;
 }
 
 ::-webkit-scrollbar-track {
-  background: #f9fafb;
-  border-radius: 10px;
+  background: transparent;
 }
 
 ::-webkit-scrollbar-thumb {
-  background: #d1d5db;
-  border-radius: 10px;
-  border: 2px solid #f9fafb;
-  transition: background 0.2s ease;
+  background: #e5e7eb;
+  border-radius: 999px;
 }
 
 ::-webkit-scrollbar-thumb:hover {
-  background: #9ca3af;
+  background: #d1d5db;
 }
 
-::-webkit-scrollbar-thumb:active {
-  background: #6b7280;
-}
-
-/* Firefox */
 * {
   scrollbar-width: thin;
-  scrollbar-color: #d1d5db #f9fafb;
+  scrollbar-color: #e5e7eb transparent;
 }
 
-/* Typography */
+/* Typography — restrained, confident */
 h1,
 h2,
 h3,
@@ -61,5 +69,22 @@ h6 {
 }
 
 p {
-  @apply leading-relaxed text-gray-600;
+  @apply leading-relaxed text-gray-500;
+}
+
+/* Links — intentional, not decorative */
+a {
+  @apply transition-colors duration-200;
+}
+
+/* Respect user motion preferences — non-negotiable */
+@media (prefers-reduced-motion: reduce) {
+  *,
+  *::before,
+  *::after {
+    animation-duration: 0.01ms !important;
+    animation-iteration-count: 1 !important;
+    transition-duration: 0.01ms !important;
+    scroll-behavior: auto !important;
+  }
 }
