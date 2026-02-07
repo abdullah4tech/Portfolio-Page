@@ -45,6 +45,15 @@ const routes: RouteRecordRaw[] = [
     },
   },
   {
+    path: '/photos',
+    name: 'Photos',
+    component: () => import('../views/WIPView.vue'),
+    meta: {
+      title: 'Photos | Abdullah O. Mustapha',
+      description: 'Photography and visual moments.',
+    },
+  },
+  {
     path: '/404',
     name: 'NotFound',
     component: () => import('../views/NotFoundView.vue'),
