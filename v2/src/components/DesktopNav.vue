@@ -1,12 +1,17 @@
 <script setup lang="ts">
 import { useRoute } from 'vue-router'
 import { Icon } from '@iconify/vue'
-import { ref, onMounted } from 'vue'
+import { ref, onMounted, onUnmounted } from 'vue'
+import { gsap } from 'gsap'
+import { ScrollTrigger } from 'gsap/ScrollTrigger'
 
 const route = useRoute()
 const signatureRef = ref<SVGTextElement | null>(null)
+const headerRef = ref<HTMLElement | null>(null)
+const navCtx = ref<gsap.Context | null>(null)
 
 onMounted(() => {
+  // Signature stroke animation
   document.fonts.ready.then(() => {
     const el = signatureRef.value
     if (!el) return
@@ -18,6 +23,31 @@ onMounted(() => {
     el.style.strokeDashoffset = '0'
     el.style.fillOpacity = '1'
   })
+
+  // Sticky nav shrink on scroll
+  if (!window.matchMedia('(prefers-reduced-motion: reduce)').matches) {
+    navCtx.value = gsap.context(() => {
+      const inner = headerRef.value?.querySelector('.nav-inner')
+      if (!inner) return
+      ScrollTrigger.create({
+        start: 'top top',
+        end: '+=1',
+        onUpdate: (self) => {
+          const scrolled = self.scroll() > 60
+          gsap.to(inner, {
+            paddingTop: scrolled ? '1rem' : '2rem',
+            paddingBottom: scrolled ? '1rem' : '2rem',
+            duration: 0.35,
+            ease: 'power2.out',
+          })
+        },
+      })
+    })
+  }
+})
+
+onUnmounted(() => {
+  navCtx.value?.revert()
 })
 
 const navLinks = [
@@ -36,8 +66,8 @@ const isActive = (to: string) => route.path === to || (to !== '/' && route.path.
 </script>
 
 <template>
-  <header class="hidden sm:block w-full">
-    <div class="max-w-3xl mx-auto px-4 sm:px-6 lg:px-8 py-8">
+  <header ref="headerRef" class="hidden sm:block w-full sticky top-0 z-50 bg-white/80 backdrop-blur-xl">
+    <div class="nav-inner max-w-3xl lg:max-w-4xl mx-auto px-4 sm:px-6 lg:px-8 py-8 transition-[padding] duration-300">
       <div class="flex items-center justify-between">
         <!-- Signature logo / Home link -->
         <RouterLink
