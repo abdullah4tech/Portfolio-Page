@@ -39,7 +39,7 @@ const projects = [
 
 const socials = [
   { icon: 'ph:github-logo-duotone', href: 'https://github.com/abdullah4tech', label: 'GitHub' },
-  { icon: 'ph:threads-logo-duotone', href: '#', label: 'Threads' },
+  { icon: 'ph:medium-logo-duotone', href: '#', label: 'Medium' },
   { icon: 'ph:discord-logo-duotone', href: '#', label: 'Discord' },
   { icon: 'ph:youtube-logo-duotone', href: '#', label: 'YouTube' },
   { icon: 'ph:instagram-logo-duotone', href: '#', label: 'Instagram' },
@@ -69,37 +69,53 @@ onMounted(async () => {
     return
   }
 
-  ctx.value = gsap.context(() => {
+  // Force a refresh to ensure Lenis and ScrollTrigger are in sync
+  ScrollTrigger.refresh()
 
+  ctx.value = gsap.context(() => {
     /* ─── Hero: Staggered cascade ─── */
     const heroEls = heroSection.value?.querySelectorAll('[data-scroll]')
     if (heroEls?.length) {
-      gsap.from(heroEls, {
-        y: 40,
-        opacity: 0,
-        duration: 1,
-        stagger: 0.15,
-        ease: 'power3.out',
-        delay: 0.2,
-      })
+      gsap.fromTo(
+        heroEls,
+        {
+          y: 40,
+          opacity: 0,
+        },
+        {
+          y: 0,
+          opacity: 1,
+          duration: 1,
+          stagger: 0.15,
+          ease: 'power3.out',
+          delay: 0.2,
+        },
+      )
     }
 
     /* ─── About paragraphs: Slide up one by one on scroll ─── */
     const aboutEls = aboutSection.value?.querySelectorAll('[data-scroll]')
     if (aboutEls?.length) {
       aboutEls.forEach((el) => {
-        gsap.from(el, {
-          scrollTrigger: {
-            trigger: el,
-            start: 'top 88%',
-            end: 'top 60%',
-            toggleActions: 'play none none none',
+        gsap.fromTo(
+          el,
+          {
+            y: 32,
+            opacity: 0,
           },
-          y: 32,
-          opacity: 0,
-          duration: 0.9,
-          ease: 'power2.out',
-        })
+          {
+            scrollTrigger: {
+              trigger: el,
+              start: 'top 88%',
+              end: 'top 60%',
+              toggleActions: 'play none none none',
+            },
+            y: 0,
+            opacity: 1,
+            duration: 0.9,
+            ease: 'power2.out',
+          },
+        )
       })
     }
 
@@ -107,52 +123,73 @@ onMounted(async () => {
     const githubEls = githubSection.value?.querySelectorAll('[data-scroll]')
     if (githubEls?.length) {
       githubEls.forEach((el) => {
-        gsap.from(el, {
-          scrollTrigger: {
-            trigger: el,
-            start: 'top 90%',
-            toggleActions: 'play none none none',
+        gsap.fromTo(
+          el,
+          {
+            y: 24,
+            opacity: 0,
           },
-          y: 24,
-          opacity: 0,
-          duration: 0.8,
-          ease: 'power2.out',
-        })
+          {
+            scrollTrigger: {
+              trigger: el,
+              start: 'top 90%',
+              toggleActions: 'play none none none',
+            },
+            y: 0,
+            opacity: 1,
+            duration: 0.8,
+            ease: 'power2.out',
+          },
+        )
       })
     }
 
     /* ─── Projects header ─── */
     const projHeader = projectsSection.value?.querySelector('[data-scroll-header]')
     if (projHeader) {
-      gsap.from(projHeader, {
-        scrollTrigger: {
-          trigger: projHeader,
-          start: 'top 90%',
-          toggleActions: 'play none none none',
+      gsap.fromTo(
+        projHeader,
+        {
+          y: 20,
+          opacity: 0,
         },
-        y: 20,
-        opacity: 0,
-        duration: 0.7,
-        ease: 'power2.out',
-      })
+        {
+          scrollTrigger: {
+            trigger: projHeader,
+            start: 'top 90%',
+            toggleActions: 'play none none none',
+          },
+          y: 0,
+          opacity: 1,
+          duration: 0.7,
+          ease: 'power2.out',
+        },
+      )
     }
 
     /* ─── Project cards: Staggered reveals ─── */
     const projectCards = projectsSection.value?.querySelectorAll('[data-scroll-card]')
     if (projectCards?.length) {
       projectCards.forEach((card, i) => {
-        gsap.from(card, {
-          scrollTrigger: {
-            trigger: card,
-            start: 'top 90%',
-            toggleActions: 'play none none none',
+        gsap.fromTo(
+          card,
+          {
+            y: 30,
+            opacity: 0,
           },
-          y: 30,
-          opacity: 0,
-          duration: 0.7,
-          delay: i * 0.1,
-          ease: 'power2.out',
-        })
+          {
+            scrollTrigger: {
+              trigger: card,
+              start: 'top 90%',
+              toggleActions: 'play none none none',
+            },
+            y: 0,
+            opacity: 1,
+            duration: 0.7,
+            delay: i * 0.1,
+            ease: 'power2.out',
+          },
+        )
       })
     }
 
@@ -162,20 +199,26 @@ onMounted(async () => {
       if (!section) return
       const els = section.querySelectorAll('[data-scroll]')
       els.forEach((el) => {
-        gsap.from(el, {
-          scrollTrigger: {
-            trigger: el,
-            start: 'top 92%',
-            toggleActions: 'play none none none',
+        gsap.fromTo(
+          el,
+          {
+            y: 24,
+            opacity: 0,
           },
-          y: 24,
-          opacity: 0,
-          duration: 0.8,
-          ease: 'power2.out',
-        })
+          {
+            scrollTrigger: {
+              trigger: el,
+              start: 'top 92%',
+              toggleActions: 'play none none none',
+            },
+            y: 0,
+            opacity: 1,
+            duration: 0.8,
+            ease: 'power2.out',
+          },
+        )
       })
     })
-
   })
 })
 
@@ -186,20 +229,40 @@ onUnmounted(() => {
 
 <template>
   <div class="space-y-24 sm:space-y-36 pt-10 sm:pt-4 pb-28 sm:pb-16">
-
     <!-- ═══ Hero ═══ -->
     <section ref="heroSection" class="space-y-6 sm:space-y-7">
-      <p data-scroll class="text-sm sm:text-base font-medium tracking-widest text-gray-400 uppercase">
+      <p
+        data-scroll
+        class="text-sm sm:text-base font-medium tracking-widest text-gray-400 uppercase"
+      >
         {Software Engineer}
       </p>
-      <h1 data-scroll class="text-5xl sm:text-6xl lg:text-7xl font-bold tracking-tight text-gray-900 leading-[1.05]">
-        Abdullah O.<br class="hidden sm:block" /> Mustapha
+      <h1
+        data-scroll
+        class="text-5xl sm:text-6xl lg:text-7xl font-bold tracking-tight text-gray-900 leading-[1.05]"
+      >
+        Abdullah O.<br class="hidden sm:block" />
+        Mustapha
       </h1>
       <p data-scroll class="max-w-xl text-base sm:text-lg lg:text-xl leading-relaxed text-gray-500">
         I build open-source tools and infrastructure at
-        <a href="#" class="text-gray-900 font-medium hover:underline underline-offset-4 decoration-gray-300">DropX</a>,
-        <a href="https://geneline-x.net" target="_blank" class="text-gray-900 font-medium hover:underline underline-offset-4 decoration-gray-300">Geneline</a>, and
-        <a href="https://codesl.org" target="_blank" class="text-gray-900 font-medium hover:underline underline-offset-4 decoration-gray-300">CODE(NIIT)</a>.
+        <a
+          href="#"
+          class="text-gray-900 font-medium hover:underline underline-offset-4 decoration-gray-300"
+          >DropX</a
+        >,
+        <a
+          href="https://geneline-x.net"
+          target="_blank"
+          class="text-gray-900 font-medium hover:underline underline-offset-4 decoration-gray-300"
+          >Geneline</a
+        >, and
+        <a
+          href="https://codesl.org"
+          target="_blank"
+          class="text-gray-900 font-medium hover:underline underline-offset-4 decoration-gray-300"
+          >CODE(NIIT)</a
+        >.
       </p>
 
       <div data-scroll class="flex items-center gap-5 pt-2">
@@ -221,32 +284,52 @@ onUnmounted(() => {
     <section ref="aboutSection" class="space-y-7 sm:space-y-8">
       <p data-scroll class="max-w-2xl text-base sm:text-lg leading-[1.9] text-gray-500">
         I'm all about building systems that actually work — no shortcuts. For me, it's not just
-        about writing code; it's about creating solid infrastructure that solves real-life
-        problems and stands the test of time. I enjoy taking heavy, complex headaches and
-        turning them into clean, lasting solutions.
+        about writing code; it's about creating solid infrastructure that solves real-life problems
+        and stands the test of time. I enjoy taking heavy, complex headaches and turning them into
+        clean, lasting solutions.
       </p>
       <p data-scroll class="max-w-2xl text-base sm:text-lg leading-[1.9] text-gray-500">
         My focus right now is on
-        <a href="https://doks-ai.vercel.app" class="text-gray-900 font-medium hover:underline underline-offset-4 decoration-gray-300">Doks AI</a>
+        <a
+          href="https://doks-ai.vercel.app"
+          class="text-gray-900 font-medium hover:underline underline-offset-4 decoration-gray-300"
+          >Doks AI</a
+        >
         and
-        <a href="https://github.com/n8bird-oss/zenon-router" class="text-gray-900 font-medium hover:underline underline-offset-4 decoration-gray-300">Zenon Router</a>.
-        I give
-        <RouterLink to="/talks" class="text-gray-900 font-medium hover:underline underline-offset-4 decoration-gray-300">talks</RouterLink>
+        <a
+          href="https://github.com/n8bird-oss/zenon-router"
+          class="text-gray-900 font-medium hover:underline underline-offset-4 decoration-gray-300"
+          >Zenon Router</a
+        >. I give
+        <RouterLink
+          to="/talks"
+          class="text-gray-900 font-medium hover:underline underline-offset-4 decoration-gray-300"
+          >talks</RouterLink
+        >
         and write
-        <RouterLink to="/blog" class="text-gray-900 font-medium hover:underline underline-offset-4 decoration-gray-300">blog posts</RouterLink>
+        <RouterLink
+          to="/blog"
+          class="text-gray-900 font-medium hover:underline underline-offset-4 decoration-gray-300"
+          >blog posts</RouterLink
+        >
         about open source, coding, and web development.
       </p>
       <p data-scroll class="max-w-2xl text-base sm:text-lg leading-[1.9] text-gray-500">
         Outside of programming, I enjoy photography and traveling. I moved from
         <span class="text-gray-700">Lagos</span> to
-        <span class="text-gray-700">Freetown, Sierra Leone</span> to pursue my studies
-        in 2022. If you're around, let's grab coffee.
+        <span class="text-gray-700">Freetown, Sierra Leone</span> to pursue my studies in 2022. If
+        you're around, let's grab coffee.
       </p>
     </section>
 
     <!-- ═══ GitHub ═══ -->
     <section ref="githubSection" class="space-y-5">
-      <h2 data-scroll class="text-xs sm:text-sm font-semibold tracking-[0.2em] text-gray-400 uppercase">Contribution Graph</h2>
+      <h2
+        data-scroll
+        class="text-xs sm:text-sm font-semibold tracking-[0.2em] text-gray-400 uppercase"
+      >
+        Contribution Graph
+      </h2>
       <div data-scroll>
         <GitHubGraph username="abdullah4tech" :join-year="2022" />
       </div>
@@ -255,8 +338,13 @@ onUnmounted(() => {
     <!-- ═══ Projects ═══ -->
     <section ref="projectsSection" class="space-y-10">
       <div data-scroll-header class="flex items-baseline justify-between">
-        <h2 class="text-xs sm:text-sm font-semibold tracking-[0.2em] text-gray-400 uppercase">Projects</h2>
-        <RouterLink to="/projects" class="flex items-center gap-1 text-xs sm:text-sm text-gray-400 hover:text-gray-600 transition-colors">
+        <h2 class="text-xs sm:text-sm font-semibold tracking-[0.2em] text-gray-400 uppercase">
+          Projects
+        </h2>
+        <RouterLink
+          to="/projects"
+          class="flex items-center gap-1 text-xs sm:text-sm text-gray-400 hover:text-gray-600 transition-colors"
+        >
           View all
           <Icon icon="ph:arrow-right-duotone" width="14" height="14" />
         </RouterLink>
@@ -274,8 +362,13 @@ onUnmounted(() => {
         >
           <div class="space-y-2 min-w-0">
             <div class="flex items-center gap-3">
-              <span class="font-mono text-[10px] sm:text-[11px] tracking-wider text-gray-300 uppercase">{{ project.tag }}</span>
-              <h3 class="text-base sm:text-lg font-semibold text-gray-900 group-hover:text-gray-600 transition-colors truncate">
+              <span
+                class="font-mono text-[10px] sm:text-[11px] tracking-wider text-gray-300 uppercase"
+                >{{ project.tag }}</span
+              >
+              <h3
+                class="text-base sm:text-lg font-semibold text-gray-900 group-hover:text-gray-600 transition-colors truncate"
+              >
                 {{ project.name }}
               </h3>
             </div>
@@ -293,22 +386,33 @@ onUnmounted(() => {
 
     <!-- ═══ Contact ═══ -->
     <section ref="contactSection" class="space-y-5">
-      <h2 data-scroll class="text-xs sm:text-sm font-semibold tracking-[0.2em] text-gray-400 uppercase">Contact</h2>
+      <h2
+        data-scroll
+        class="text-xs sm:text-sm font-semibold tracking-[0.2em] text-gray-400 uppercase"
+      >
+        Contact
+      </h2>
       <p data-scroll class="text-sm sm:text-base text-gray-500">
         Reach me at
         <a
           href="mailto:abdullahmu4life@gmail.com"
           class="text-gray-900 font-mono text-[13px] sm:text-sm hover:underline underline-offset-4 decoration-gray-300"
-        >abdullahmu4life@gmail.com</a>
+          >abdullahmu4life@gmail.com</a
+        >
       </p>
     </section>
 
     <!-- ═══ Sponsor ═══ -->
     <section ref="sponsorSection" class="space-y-6">
-      <h2 data-scroll class="text-xs sm:text-sm font-semibold tracking-[0.2em] text-gray-400 uppercase">Sponsor</h2>
+      <h2
+        data-scroll
+        class="text-xs sm:text-sm font-semibold tracking-[0.2em] text-gray-400 uppercase"
+      >
+        Sponsor
+      </h2>
       <p data-scroll class="text-sm sm:text-base text-gray-500 max-w-lg leading-relaxed">
-        If you enjoy my work and find it useful, consider sponsoring me to help keep
-        open source sustainable.
+        If you enjoy my work and find it useful, consider sponsoring me to help keep open source
+        sustainable.
       </p>
       <a
         data-scroll
@@ -329,7 +433,8 @@ onUnmounted(() => {
           target="_blank"
           rel="noopener noreferrer"
           class="hover:text-gray-500 transition-colors"
-        >CC BY-NC-SA 4.0</a>
+          >CC BY-NC-SA 4.0</a
+        >
         &nbsp;·&nbsp; 2025–PRESENT © Abdullah O. Mustapha
       </p>
     </footer>
