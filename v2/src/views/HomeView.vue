@@ -40,9 +40,10 @@ const projects = [
 const socials = [
   { icon: 'ph:github-logo-duotone', href: 'https://github.com/abdullah4tech', label: 'GitHub' },
   { icon: 'ph:medium-logo-duotone', href: '#', label: 'Medium' },
+  { icon: 'ph:x-logo-duotone', href: '#', label: 'X' },
   { icon: 'ph:discord-logo-duotone', href: '#', label: 'Discord' },
   { icon: 'ph:youtube-logo-duotone', href: '#', label: 'YouTube' },
-  { icon: 'ph:instagram-logo-duotone', href: '#', label: 'Instagram' },
+  { icon: 'ph:linkedin-logo-duotone', href: '#', label: 'LinkedIn' },
 ]
 
 /* ── Refs ─────────────────────────────────────────────── */
