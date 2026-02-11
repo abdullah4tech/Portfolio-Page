@@ -1,8 +1,5 @@
-import './assets/main.css'
-
 import { createApp } from 'vue'
 import { createHead } from '@vueuse/head'
-import { MotionPlugin } from '@vueuse/motion'
 import { gsap } from 'gsap'
 import { ScrollTrigger } from 'gsap/ScrollTrigger'
 import Lenis from 'lenis'
@@ -35,6 +32,5 @@ const head = createHead()
 
 app.use(head)
 app.use(router)
-app.use(MotionPlugin)
 
 app.mount('#app')

@@ -4,7 +4,6 @@ import svgLoader from 'vite-svg-loader'
 import tailwindcss from '@tailwindcss/vite'
 import vue from '@vitejs/plugin-vue'
 import vueDevTools from 'vite-plugin-vue-devtools'
-import { VitePWA } from 'vite-plugin-pwa'
 import viteCompression from 'vite-plugin-compression'
 
 // https://vite.dev/config/
@@ -38,70 +37,7 @@ export default defineConfig({
         ],
       },
     }),
-    VitePWA({
-      registerType: 'autoUpdate',
-      devOptions: {
-        enabled: false,
-      },
-      workbox: {
-        globPatterns: ['**/*.{js,css,html,ico,png,svg,woff2}'],
-        runtimeCaching: [
-          {
-            urlPattern: /^https:\/\/fonts\.googleapis\.com\//,
-            handler: 'StaleWhileRevalidate',
-            options: {
-              cacheName: 'google-fonts-stylesheets',
-            },
-          },
-          {
-            urlPattern: /^https:\/\/fonts\.gstatic\.com\//,
-            handler: 'CacheFirst',
-            options: {
-              cacheName: 'google-fonts-webfonts',
-              expiration: {
-                maxEntries: 30,
-                maxAgeSeconds: 60 * 60 * 24 * 365, // 1 year
-              },
-            },
-          },
-        ],
-      },
-      includeAssets: ['favicon.ico', 'apple-touch-icon.svg', 'icon-192.svg', 'icon-512.svg'],
-      manifest: {
-        name: 'Abdullah Mustapha - Portfolio',
-        short_name: 'Abdullah Portfolio',
-        description:
-          'Software Engineer focused on building scalable web applications and intuitive user interfaces',
-        theme_color: '#ffffff',
-        background_color: '#ffffff',
-        display: 'standalone',
-        icons: [
-          {
-            src: 'apple-touch-icon.svg',
-            sizes: '180x180',
-            type: 'image/svg+xml',
-            purpose: 'any maskable',
-          },
-          {
-            src: 'icon-192.svg',
-            sizes: '192x192',
-            type: 'image/svg+xml',
-            purpose: 'any maskable',
-          },
-          {
-            src: 'icon-512.svg',
-            sizes: '512x512',
-            type: 'image/svg+xml',
-            purpose: 'any maskable',
-          },
-          {
-            src: 'favicon.ico',
-            sizes: '32x32',
-            type: 'image/x-icon',
-          },
-        ],
-      },
-    }),
+
     // Gzip compression
     viteCompression({
       verbose: true,
@@ -114,7 +50,7 @@ export default defineConfig({
     viteCompression({
       verbose: true,
       disable: false,
-      threshold: 1024,
+      threshold: 10240,
       algorithm: 'brotliCompress',
       ext: '.br',
     }),
@@ -160,18 +96,11 @@ export default defineConfig({
           }
 
           // VueUse utilities
-          if (
-            id.includes('@vueuse/core') ||
-            id.includes('@vueuse/head') ||
-            id.includes('@vueuse/motion')
-          ) {
+          if (id.includes('@vueuse/core') || id.includes('@vueuse/head')) {
             return 'vueuse'
           }
 
           // UI libraries
-          if (id.includes('lucide-vue-next')) {
-            return 'ui-libs'
-          }
 
           // Blog / Markdown
           if (id.includes('shiki') || id.includes('markdown-it')) {
@@ -184,7 +113,11 @@ export default defineConfig({
           }
 
           // Photo gallery
-          if (id.includes('photoswipe') || id.includes('masonry-layout') || id.includes('imagesloaded')) {
+          if (
+            id.includes('photoswipe') ||
+            id.includes('masonry-layout') ||
+            id.includes('imagesloaded')
+          ) {
             return 'gallery-vendor'
           }
 
@@ -242,8 +175,6 @@ export default defineConfig({
       'vue-router',
       '@vueuse/core',
       '@vueuse/head',
-      '@vueuse/motion',
-      'lucide-vue-next',
       'markdown-it',
       'photoswipe',
       'masonry-layout',

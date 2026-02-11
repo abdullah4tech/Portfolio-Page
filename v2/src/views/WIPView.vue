@@ -1,5 +1,5 @@
 <script setup lang="ts">
-import { Construction } from 'lucide-vue-next'
+import { Icon } from '@iconify/vue'
 import { useHead } from '@vueuse/head'
 
 useHead({
@@ -16,7 +16,7 @@ useHead({
 <template>
   <main class="max-w-3xl mx-auto px-6 py-20 text-center">
     <div class="inline-flex items-center justify-center p-4 bg-gray-100 rounded-full mb-6">
-      <Construction class="w-8 h-8 text-gray-600" />
+      <Icon icon="ph:barricade-bold" width="32" height="32" class="text-gray-600" />
     </div>
     <h1 class="text-3xl font-bold text-gray-900 mb-4">Work in Progress</h1>
     <p class="text-gray-600 mb-8">I'm currently crafting this page. Please check back soon!</p>
