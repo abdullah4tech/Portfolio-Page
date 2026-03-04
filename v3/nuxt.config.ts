@@ -91,7 +91,7 @@ export default defineNuxtConfig({
         { property: "og:site_name", content: "Abdullah Mustapha Portfolio" },
         {
           property: "og:image",
-          content: "https://www.abdullahmustapha.xyz/og-image.jpg",
+          content: "https://www.abdullahmustapha.xyz/ogg_image.webp",
         },
         { property: "og:image:width", content: "1200" },
         { property: "og:image:height", content: "630" },
@@ -112,7 +112,7 @@ export default defineNuxtConfig({
         },
         {
           name: "twitter:image",
-          content: "https://www.abdullahmustapha.xyz/og-image.jpg",
+          content: "https://www.abdullahmustapha.xyz/ogg_image.webp",
         },
         // Theme
         { name: "theme-color", content: "#ffffff" },
