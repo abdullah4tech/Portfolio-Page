@@ -10,22 +10,22 @@ useHead({
 
 const projects = [
   {
-    name: "fsh",
-    desc: "A modern, fast shell for the terminal.",
-    href: "https://github.com/n8bird-oss/fsh",
-    tag: "TYPESCRIPT",
+    name: "Doks AI",
+    desc: "Intelligent documentation engine powered by AI. Seamlessly generate, manage, and search your developer docs.",
+    href: "https://doks-ai.vercel.app",
+    tag: "AI • SaaS",
   },
   {
-    name: "Doks AI",
-    desc: "Intelligent documentation engine powered by AI.",
-    href: "https://doks-ai.vercel.app",
-    tag: "TYPESCRIPT",
+    name: "fsh",
+    desc: "A modern, fast shell for the terminal designed for speed and productivity.",
+    href: "https://github.com/n8bird-oss/fsh",
+    tag: "CLI Tool",
   },
   {
     name: "Zenon Router",
     desc: "Lightweight, fast HTTP router for Node.js.",
     href: "https://github.com/n8bird-oss/zenon-router",
-    tag: "TYPESCRIPT",
+    tag: "Web Dev Lib",
   },
 ];
 
@@ -94,15 +94,26 @@ const socials = [
         data-animate
         class="text-base sm:text-lg leading-[1.9] text-gray-500 dark:text-zinc-400"
       >
-        I'm all about building systems that actually work — no shortcuts. For
-        me, it's not just about writing code; it's about creating solid
-        infrastructure that solves real-life problems and stands the test of
-        time. I enjoy taking heavy, complex headaches and turning them into
-        clean, lasting solutions.
+        I am an entrepreneur and backend engineer specializing in scalable
+        system design and robust application architecture. I build
+        high-performance APIs, authentication systems, and framework-agnostic
+        tools with a focus on clean code, maintainability, and long-term
+        scalability.
       </p>
       <p
         data-animate
         data-animate-delay="1"
+        class="text-base sm:text-lg leading-[1.9] text-gray-500 dark:text-zinc-400"
+      >
+        Driven by product vision as much as technical precision, I create
+        solutions that solve real-world problems — including community-focused
+        platforms and developer tooling. My work blends strategic thinking with
+        deep backend expertise to deliver systems that are reliable, efficient,
+        and built to grow.
+      </p>
+      <p
+        data-animate
+        data-animate-delay="2"
         class="text-base sm:text-lg leading-[1.9] text-gray-500 dark:text-zinc-400"
       >
         My focus right now is on
@@ -116,13 +127,7 @@ const socials = [
           href="https://github.com/n8bird-oss/zenon-router"
           class="text-gray-900 dark:text-zinc-200 font-medium hover:underline underline-offset-4 decoration-gray-300 dark:decoration-zinc-600"
           >Zenon Router</a
-        >. I give
-        <NuxtLink
-          to="/talks"
-          class="text-gray-900 dark:text-zinc-200 font-medium hover:underline underline-offset-4 decoration-gray-300 dark:decoration-zinc-600"
-          >talks</NuxtLink
-        >
-        and write
+        >. I write
         <NuxtLink
           to="/blog"
           class="text-gray-900 dark:text-zinc-200 font-medium hover:underline underline-offset-4 decoration-gray-300 dark:decoration-zinc-600"
@@ -132,7 +137,7 @@ const socials = [
       </p>
       <p
         data-animate
-        data-animate-delay="2"
+        data-animate-delay="3"
         class="text-base sm:text-lg leading-[1.9] text-gray-500 dark:text-zinc-400"
       >
         Outside of programming, I enjoy photography and traveling. I moved from
@@ -158,23 +163,23 @@ const socials = [
     </section>
 
     <!-- ═══ Projects ═══ -->
-    <section class="space-y-10">
+    <section class="space-y-8">
       <div data-animate class="flex items-baseline justify-between">
         <h2
           class="text-xs sm:text-sm font-semibold tracking-[0.2em] text-gray-400 dark:text-zinc-500 uppercase"
         >
-          Projects
+          Selected Work
         </h2>
         <NuxtLink
           to="/projects"
-          class="flex items-center gap-1 text-xs sm:text-sm text-gray-400 dark:text-zinc-500 hover:text-gray-600 dark:hover:text-zinc-300 transition-colors"
+          class="flex items-center gap-1.5 text-xs sm:text-sm text-gray-400 dark:text-zinc-500 hover:text-gray-900 dark:hover:text-zinc-100 transition-colors"
         >
           View all
           <Icon icon="ph:arrow-right-duotone" width="14" height="14" />
         </NuxtLink>
       </div>
 
-      <div class="grid gap-0">
+      <div class="grid grid-cols-1 md:grid-cols-2 gap-4 sm:gap-5">
         <a
           v-for="(project, i) in projects"
           :key="project.name"
@@ -183,32 +188,48 @@ const socials = [
           rel="noopener noreferrer"
           data-animate
           :data-animate-delay="i + 1"
-          class="group flex items-start justify-between gap-4 py-6 sm:py-7 border-b border-gray-100 dark:border-zinc-800 last:border-0 transition-colors"
+          :class="[
+            'group relative flex flex-col justify-between p-6 sm:p-8 rounded-3xl bg-gray-50/50 dark:bg-zinc-800/40 border border-gray-100 dark:border-zinc-700/50 hover:bg-white dark:hover:bg-zinc-800 hover:border-gray-200 dark:hover:border-zinc-600 hover:shadow-sm sm:hover:-translate-y-1 transition-all duration-500 overflow-hidden',
+            i === 0 ? 'md:col-span-2' : '',
+          ]"
         >
-          <div class="space-y-2 min-w-0">
-            <div class="flex items-center gap-3">
+          <!-- Premium gradient on hover -->
+          <div
+            class="absolute inset-0 bg-gradient-to-br from-gray-100/50 to-transparent dark:from-zinc-700/20 dark:to-transparent opacity-0 group-hover:opacity-100 transition-opacity duration-500"
+          ></div>
+
+          <div class="relative z-10 flex flex-col h-full gap-8 sm:gap-12">
+            <div class="flex items-start justify-between">
               <span
-                class="font-mono text-[10px] sm:text-[11px] tracking-wider text-gray-300 dark:text-zinc-500 uppercase"
-                >{{ project.tag }}</span
+                class="inline-flex items-center px-3 py-1.5 rounded-full text-[10px] sm:text-xs font-semibold tracking-wider uppercase bg-gray-200/50 dark:bg-zinc-700/50 text-gray-700 dark:text-zinc-300 backdrop-blur-md transition-colors"
               >
+                {{ project.tag }}
+              </span>
+              <div
+                class="w-10 h-10 rounded-full bg-white dark:bg-zinc-700 shadow-sm border border-gray-100 dark:border-zinc-600 flex items-center justify-center group-hover:bg-gray-900 group-hover:dark:bg-white group-hover:scale-110 transition-all duration-300"
+              >
+                <Icon
+                  icon="ph:arrow-up-right-bold"
+                  width="16"
+                  height="16"
+                  class="text-gray-400 dark:text-zinc-400 group-hover:text-white group-hover:dark:text-zinc-900 transition-colors duration-300"
+                />
+              </div>
+            </div>
+
+            <div class="space-y-3">
               <h3
-                class="text-base sm:text-lg font-semibold text-gray-900 dark:text-zinc-100 group-hover:text-gray-600 dark:group-hover:text-zinc-400 transition-colors truncate"
+                class="text-xl sm:text-2xl font-bold text-gray-900 dark:text-zinc-100 tracking-tight"
               >
                 {{ project.name }}
               </h3>
+              <p
+                class="text-sm sm:text-base text-gray-500 dark:text-zinc-400 leading-relaxed max-w-md"
+              >
+                {{ project.desc }}
+              </p>
             </div>
-            <p
-              class="text-sm sm:text-base text-gray-400 dark:text-zinc-500 leading-relaxed"
-            >
-              {{ project.desc }}
-            </p>
           </div>
-          <Icon
-            icon="ph:arrow-up-right-duotone"
-            width="16"
-            height="16"
-            class="mt-2 shrink-0 text-gray-300 dark:text-zinc-500 opacity-0 group-hover:opacity-100 transition-all duration-300 group-hover:translate-x-0.5 group-hover:-translate-y-0.5"
-          />
         </a>
       </div>
     </section>
