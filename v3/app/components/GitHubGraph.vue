@@ -27,11 +27,10 @@ const levelColorsLight = [
 ];
 const levelColorsDark = ["#161b22", "#0e4429", "#006d32", "#26a641", "#39d353"];
 
-const isDark = () =>
-  typeof document !== "undefined" &&
-  document.documentElement.classList.contains("dark");
+const colorMode = useColorMode();
+const isDark = computed(() => colorMode.value === "dark");
 const levelColors = computed(() =>
-  isDark() ? levelColorsDark : levelColorsLight
+  isDark.value ? levelColorsDark : levelColorsLight
 );
 
 const CELL_SIZE = 12;
@@ -200,7 +199,7 @@ const DAY_LABEL_WIDTH = 0; // No offset needed if no day labels
               :key="label.text + label.x"
               :x="label.x + DAY_LABEL_WIDTH"
               :y="10"
-              :fill="isDark() ? '#71717a' : '#9ca3af'"
+              :fill="isDark ? '#71717a' : '#9ca3af'"
               font-size="11"
               font-family="Inter, system-ui, sans-serif"
             >

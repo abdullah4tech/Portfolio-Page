@@ -94,9 +94,9 @@ const socials = [
         data-animate
         class="text-base sm:text-lg leading-[1.9] text-gray-500 dark:text-zinc-400"
       >
-        I am an entrepreneur and backend engineer specializing in scalable
+        I am a backend engineer specializing in scalable
         system design and robust application architecture. I build
-        high-performance APIs, authentication systems, and framework-agnostic
+        high-performance APIs and framework-agnostic
         tools with a focus on clean code, maintainability, and long-term
         scalability.
       </p>
