@@ -1,0 +1,179 @@
+@import "tailwindcss";
+
+@custom-variant dark (&:where(.dark, .dark *));
+
+:root {
+  --font-sans: "Inter", system-ui, -apple-system, BlinkMacSystemFont, sans-serif;
+  --font-mono: "Fira Code", "SF Mono", "Menlo", monospace;
+
+  /* Surface */
+  --bg: #ffffff;
+  --bg-soft: #f9fafb;
+  --bg-muted: #f3f4f6;
+
+  /* Text */
+  --text-primary: #111827;
+  --text-secondary: #6b7280;
+  --text-muted: #9ca3af;
+  --text-faint: #d1d5db;
+
+  /* Borders */
+  --border: #e5e7eb;
+  --border-soft: #f3f4f6;
+
+  /* Accents */
+  --selection-bg: #e5e7eb;
+  --selection-text: #111827;
+  --scrollbar-thumb: #e5e7eb;
+  --scrollbar-hover: #d1d5db;
+}
+
+.dark {
+  --bg: #0a0a0b;
+  --bg-soft: #141416;
+  --bg-muted: #1e1e21;
+
+  --text-primary: #f0f0f2;
+  --text-secondary: #d4d4d8;
+  --text-muted: #71717a;
+  --text-faint: #3f3f46;
+
+  --border: #27272a;
+  --border-soft: #1e1e21;
+
+  --selection-bg: #27272a;
+  --selection-text: #f0f0f2;
+  --scrollbar-thumb: #27272a;
+  --scrollbar-hover: #3f3f46;
+}
+
+html {
+  -webkit-font-smoothing: antialiased;
+  -moz-osx-font-smoothing: grayscale;
+  font-feature-settings: "cv11", "ss01";
+  font-variation-settings: "wght" 400;
+}
+
+html.lenis,
+html.lenis body {
+  height: auto;
+}
+
+.lenis.lenis-smooth {
+  scroll-behavior: auto !important;
+}
+
+.lenis.lenis-smooth [data-lenis-prevent] {
+  overscroll-behavior: contain;
+}
+
+.lenis.lenis-stopped {
+  overflow: hidden;
+}
+
+body {
+  font-family: var(--font-sans);
+  background: var(--bg);
+  color: var(--text-primary);
+  overflow-x: hidden;
+  min-height: 100vh;
+  transition: background 0.4s ease, color 0.4s ease;
+}
+
+::selection {
+  background: var(--selection-bg);
+  color: var(--selection-text);
+}
+
+/* Scrollbar — invisible but functional */
+::-webkit-scrollbar {
+  width: 6px;
+  height: 6px;
+}
+
+::-webkit-scrollbar-track {
+  background: transparent;
+}
+
+::-webkit-scrollbar-thumb {
+  background: var(--scrollbar-thumb);
+  border-radius: 999px;
+}
+
+::-webkit-scrollbar-thumb:hover {
+  background: var(--scrollbar-hover);
+}
+
+* {
+  scrollbar-width: thin;
+  scrollbar-color: var(--scrollbar-thumb) transparent;
+}
+
+/* Typography — restrained, confident */
+h1,
+h2,
+h3,
+h4,
+h5,
+h6 {
+  @apply font-bold tracking-tight;
+  color: var(--text-primary);
+}
+
+p {
+  @apply leading-relaxed;
+  color: var(--text-secondary);
+}
+
+/* Links — intentional, not decorative */
+a {
+  @apply transition-colors duration-200;
+}
+
+/* ── Entrance animations — pure CSS, works with SSR + client nav ── */
+@keyframes fadeInUp {
+  from {
+    opacity: 0;
+    transform: translateY(20px);
+  }
+  to {
+    opacity: 1;
+    transform: translateY(0);
+  }
+}
+
+[data-animate] {
+  animation: fadeInUp 0.6s ease-out both;
+}
+
+/* Stagger children with increasing delay */
+[data-animate-delay="1"] {
+  animation-delay: 0.1s;
+}
+[data-animate-delay="2"] {
+  animation-delay: 0.2s;
+}
+[data-animate-delay="3"] {
+  animation-delay: 0.3s;
+}
+[data-animate-delay="4"] {
+  animation-delay: 0.4s;
+}
+[data-animate-delay="5"] {
+  animation-delay: 0.5s;
+}
+[data-animate-delay="6"] {
+  animation-delay: 0.6s;
+}
+
+/* Respect user motion preferences — non-negotiable */
+@media (prefers-reduced-motion: reduce) {
+  *,
+  *::before,
+  *::after {
+    animation-duration: 0.01ms !important;
+    animation-iteration-count: 1 !important;
+    transition-duration: 0.01ms !important;
+    scroll-behavior: auto !important;
+  }
+}
