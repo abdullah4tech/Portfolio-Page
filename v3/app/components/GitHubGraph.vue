@@ -85,13 +85,14 @@ function selectYear(year: number) {
 
 // Organize contributions into weeks (columns) for the grid
 const weeks = computed(() => {
-  if (!contributions.value.length) return [];
+  const firstContribution = contributions.value[0];
+  if (!firstContribution) return [];
 
   const result: ContributionDay[][] = [];
   let currentWeek: ContributionDay[] = [];
 
   // Pad the first week so it starts on Sunday
-  const firstDay = new Date(contributions.value[0].date).getDay();
+  const firstDay = new Date(firstContribution.date).getDay();
   for (let i = 0; i < firstDay; i++) {
     currentWeek.push({ date: "", count: 0, level: -1 });
   }
@@ -139,7 +140,7 @@ const monthLabels = computed(() => {
     if (month !== lastMonth) {
       lastMonth = month;
       labels.push({
-        text: months[month],
+        text: months[month] ?? "",
         x: weekIdx * (CELL_SIZE + CELL_GAP) + CELL_GAP,
       });
     }
