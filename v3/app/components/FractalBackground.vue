@@ -120,9 +120,10 @@ onMounted(() => {
   };
 
   const onTouchMove = (e: TouchEvent) => {
-    if (e.touches.length > 0) {
-      mouse.x = e.touches[0].clientX;
-      mouse.y = e.touches[0].clientY;
+    const touch = e.touches[0];
+    if (touch) {
+      mouse.x = touch.clientX;
+      mouse.y = touch.clientY;
     }
   };
 
