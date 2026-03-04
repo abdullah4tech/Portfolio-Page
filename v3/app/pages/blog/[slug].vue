@@ -52,68 +52,94 @@ onMounted(() => init());
 </script>
 
 <template>
-  <article v-if="post" class="py-10 sm:py-14">
-    <!-- Back link -->
-    <NuxtLink
-      to="/blog"
-      data-animate
-      class="inline-flex items-center gap-1.5 text-sm text-gray-400 dark:text-zinc-500 hover:text-gray-600 dark:hover:text-zinc-300 transition-colors mb-10 sm:mb-14"
+  <main class="max-w-3xl mx-auto px-6 py-20 text-center">
+    <div
+      class="inline-flex items-center justify-center p-4 bg-gray-100 dark:bg-zinc-800 rounded-full mb-6"
     >
-      <Icon icon="ph:arrow-left-duotone" width="14" height="14" />
-      Back to blog
+      <Icon
+        icon="ph:barricade-bold"
+        width="32"
+        height="32"
+        class="text-gray-600 dark:text-zinc-400"
+      />
+    </div>
+    <h1 class="text-3xl font-bold text-gray-900 dark:text-zinc-100 mb-4">
+      Work in Progress
+    </h1>
+    <p class="text-gray-600 dark:text-zinc-400 mb-8">
+      I'm currently crafting this page. Please check back soon!
+    </p>
+    <NuxtLink
+      to="/"
+      class="inline-flex items-center justify-center px-6 py-2 bg-gray-900 dark:bg-white text-white dark:text-zinc-900 rounded-lg hover:bg-gray-800 dark:hover:bg-zinc-200 transition-colors"
+    >
+      Go Home
     </NuxtLink>
-
-    <!-- Header -->
-    <header class="space-y-4 mb-12 sm:mb-16">
-      <div
+  </main>
+  <template v-if="false">
+    <article v-if="post" class="py-10 sm:py-14">
+      <!-- Back link -->
+      <NuxtLink
+        to="/blog"
         data-animate
-        data-animate-delay="1"
-        class="flex items-center gap-3 text-sm text-gray-400 dark:text-zinc-500 font-mono"
+        class="inline-flex items-center gap-1.5 text-sm text-gray-400 dark:text-zinc-500 hover:text-gray-600 dark:hover:text-zinc-300 transition-colors mb-10 sm:mb-14"
       >
-        <time :datetime="post.date">{{ formattedDate }}</time>
-        <span class="opacity-40">·</span>
-        <span>{{ post.readingTime }} min read</span>
-      </div>
+        <Icon icon="ph:arrow-left-duotone" width="14" height="14" />
+        Back to blog
+      </NuxtLink>
 
-      <h1
-        data-animate
-        data-animate-delay="2"
-        class="text-3xl sm:text-4xl lg:text-5xl font-bold tracking-tight text-gray-900 dark:text-zinc-100 leading-[1.1]"
-      >
-        {{ post.title }}
-      </h1>
+      <!-- Header -->
+      <header class="space-y-4 mb-12 sm:mb-16">
+        <div
+          data-animate
+          data-animate-delay="1"
+          class="flex items-center gap-3 text-sm text-gray-400 dark:text-zinc-500 font-mono"
+        >
+          <time :datetime="post?.date">{{ formattedDate }}</time>
+          <span class="opacity-40">·</span>
+          <span>{{ post?.readingTime }} min read</span>
+        </div>
 
+        <h1
+          data-animate
+          data-animate-delay="2"
+          class="text-3xl sm:text-4xl lg:text-5xl font-bold tracking-tight text-gray-900 dark:text-zinc-100 leading-[1.1]"
+        >
+          {{ post?.title }}
+        </h1>
+
+        <div
+          data-animate
+          data-animate-delay="3"
+          class="flex flex-wrap gap-2 pt-1"
+        >
+          <NuxtLink
+            v-for="tag in post?.tags"
+            :key="tag"
+            :to="`/blog?tag=${tag}`"
+            class="text-xs font-mono tracking-wider text-gray-400 dark:text-zinc-500 hover:text-gray-600 dark:hover:text-zinc-300 transition-colors"
+          >
+            #{{ tag }}
+          </NuxtLink>
+        </div>
+      </header>
+
+      <!-- Rendered markdown content -->
       <div
         data-animate
         data-animate-delay="3"
-        class="flex flex-wrap gap-2 pt-1"
-      >
-        <NuxtLink
-          v-for="tag in post.tags"
-          :key="tag"
-          :to="`/blog?tag=${tag}`"
-          class="text-xs font-mono tracking-wider text-gray-400 dark:text-zinc-500 hover:text-gray-600 dark:hover:text-zinc-300 transition-colors"
-        >
-          #{{ tag }}
-        </NuxtLink>
-      </div>
-    </header>
+        class="prose-blog"
+        v-html="renderedContent"
+      />
 
-    <!-- Rendered markdown content -->
-    <div
-      data-animate
-      data-animate-delay="3"
-      class="prose-blog"
-      v-html="renderedContent"
-    />
+      <!-- Giscus comments -->
+      <GiscusComments />
+    </article>
 
-    <!-- Giscus comments -->
-    <GiscusComments />
-  </article>
-
-  <div v-else class="py-20 text-center">
-    <p class="text-sm text-gray-400 dark:text-zinc-500">Loading…</p>
-  </div>
+    <div v-else class="py-20 text-center">
+      <p class="text-sm text-gray-400 dark:text-zinc-500">Loading…</p>
+    </div>
+  </template>
 </template>
 
 <style scoped>
