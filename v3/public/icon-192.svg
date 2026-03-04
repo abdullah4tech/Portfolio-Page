@@ -1,0 +1,20 @@
+<svg width="192" height="192" viewBox="0 0 192 192" xmlns="http://www.w3.org/2000/svg">
+  <defs>
+    <linearGradient id="bgGradient" x1="0%" y1="0%" x2="100%" y2="100%">
+      <stop offset="0%" style="stop-color:#667eea;stop-opacity:1" />
+      <stop offset="100%" style="stop-color:#764ba2;stop-opacity:1" />
+    </linearGradient>
+  </defs>
+
+  <!-- Background -->
+  <rect width="192" height="192" rx="24" ry="24" fill="url(#bgGradient)"/>
+
+  <!-- Letter A -->
+  <path d="M96 48 L132 132 L114 132 L106 108 L86 108 L78 132 L60 132 L96 48 Z M88 88 L104 88 L96 72 L88 88 Z"
+        fill="white"
+        stroke="none"
+        stroke-width="2"/>
+
+  <!-- Dot accent -->
+  <circle cx="96" cy="150" r="10" fill="white" opacity="0.9"/>
+</svg>
