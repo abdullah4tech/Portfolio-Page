@@ -1,269 +1,346 @@
 <script setup lang="ts">
-import {
-  ref,
-  computed,
-  onMounted,
-  onBeforeUnmount,
-  watch,
-  nextTick,
-} from "vue";
-import type { Photo } from "~/data/photos";
+import { ref, reactive, computed, onMounted, onBeforeUnmount, watch, nextTick } from "vue";
+import { Icon } from "@iconify/vue";
 
-const props = withDefaults(
-  defineProps<{
-    photos: Photo[];
-    gutter?: number;
-  }>(),
-  { gutter: 16 }
+const rawGlob = import.meta.glob(
+  "../../public/photos/*.{jpg,jpeg,png,webp,gif,avif,JPG,JPEG,PNG,WEBP}",
+  { eager: false }
 );
 
+const photos = Object.keys(rawGlob).map((path) => {
+  const filename = path.split("/").pop()!;
+  const id = filename.replace(/\.[^.]+$/, "");
+  return { id, src: `/photos/${filename}`, alt: id.replace(/[-_]/g, " ") };
+});
+
+
+const layout = ref<"masonry" | "grid">("masonry");
+
+
 const gridRef = ref<HTMLElement | null>(null);
-const lightboxRef = ref<InstanceType<
-  typeof import("./PhotoLightbox.vue").default
-> | null>(null);
 let msnry: any = null;
+const GUTTER = 12;
 
-/* ── Filtering ── */
-const activeTag = ref<string | null>(null);
-
-const allTags = computed(() => {
-  const tags = new Set<string>();
-  props.photos.forEach((p) => p.tags?.forEach((t) => tags.add(t)));
-  return Array.from(tags).sort();
-});
-
-const filteredPhotos = computed(() => {
-  if (!activeTag.value) return props.photos;
-  return props.photos.filter((p) => p.tags?.includes(activeTag.value!));
-});
-
-function setTag(tag: string | null) {
-  activeTag.value = activeTag.value === tag ? null : tag;
-}
-
-/* ── Masonry ── */
 async function layoutMasonry() {
   if (!gridRef.value || !import.meta.client) return;
-
   msnry?.destroy?.();
-
-  // Dynamic import to avoid SSR "window is not defined" error
   const [{ default: Masonry }, { default: imagesLoaded }] = await Promise.all([
     import("masonry-layout"),
     import("imagesloaded"),
   ]);
-
   msnry = new Masonry(gridRef.value, {
     itemSelector: ".photo-item",
     columnWidth: ".photo-sizer",
     percentPosition: true,
-    gutter: props.gutter,
+    gutter: GUTTER,
     transitionDuration: "0.25s",
   });
-
-  imagesLoaded(gridRef.value).on("progress", () => {
-    msnry?.layout?.();
-  });
+  imagesLoaded(gridRef.value).on("progress", () => msnry?.layout?.());
 }
 
 onMounted(() => layoutMasonry());
-
-onBeforeUnmount(() => {
-  msnry?.destroy?.();
-  msnry = null;
+onBeforeUnmount(() => { msnry?.destroy?.(); msnry = null; closeLight(); });
+watch(layout, (val) => {
+  if (val === "masonry") nextTick(() => layoutMasonry());
+  else { msnry?.destroy?.(); msnry = null; }
 });
 
-watch(filteredPhotos, () => {
-  nextTick(() => layoutMasonry());
-});
 
-/* ── Lightbox ── */
-function openLightbox(index: number) {
-  lightboxRef.value?.open(index);
+const loaded = reactive(new Set<string>());
+function onImageLoad(id: string) { loaded.add(id); }
+
+
+const lightIndex = ref<number | null>(null);
+
+function openLight(i: number) {
+  lightIndex.value = i;
+  document.body.style.overflow = "hidden";
 }
 
-/* ── Progressive loading ── */
-const loaded = ref(new Set<string>());
-function onImageLoad(id: string) {
-  loaded.value.add(id);
+function closeLight() {
+  lightIndex.value = null;
+  document.body.style.overflow = "";
 }
+
+function prev() {
+  if (lightIndex.value === null) return;
+  lightIndex.value = (lightIndex.value - 1 + photos.length) % photos.length;
+}
+
+function next() {
+  if (lightIndex.value === null) return;
+  lightIndex.value = (lightIndex.value + 1) % photos.length;
+}
+
+function onKeydown(e: KeyboardEvent) {
+  if (lightIndex.value === null) return;
+  if (e.key === "Escape") closeLight();
+  if (e.key === "ArrowLeft") prev();
+  if (e.key === "ArrowRight") next();
+}
+
+const currentPhoto = computed(() =>
+  lightIndex.value !== null ? photos[lightIndex.value] ?? null : null
+);
+
+onMounted(() => window.addEventListener("keydown", onKeydown));
+onBeforeUnmount(() => window.removeEventListener("keydown", onKeydown));
 </script>
 
 <template>
   <div class="photo-gallery">
-    <!-- Tag filter pills -->
-    <div v-if="allTags.length" class="flex flex-wrap gap-2 mb-8">
+    <!-- Layout toggle -->
+    <div class="flex justify-end mb-6">
       <button
-        v-for="tag in allTags"
-        :key="tag"
-        @click="setTag(tag)"
-        class="text-xs font-mono tracking-wider px-3 py-1.5 rounded-full border transition-all duration-200 cursor-pointer"
-        :class="
-          activeTag === tag
-            ? 'bg-gray-900 text-white border-gray-900'
-            : 'text-gray-400 border-gray-200 hover:border-gray-300 hover:text-gray-600'
-        "
+        @click="layout = layout === 'masonry' ? 'grid' : 'masonry'"
+        class="p-2 rounded-lg text-gray-400 dark:text-zinc-500 hover:text-gray-700 dark:hover:text-zinc-300 hover:bg-gray-100 dark:hover:bg-zinc-800 transition-colors cursor-pointer"
+        :aria-label="layout === 'masonry' ? 'Switch to grid layout' : 'Switch to masonry layout'"
       >
-        {{ tag }}
-      </button>
-      <button
-        v-if="activeTag"
-        @click="setTag(null)"
-        class="text-xs font-mono tracking-wider px-3 py-1.5 text-gray-400 hover:text-gray-600 transition-colors cursor-pointer"
-      >
-        clear
+        <Icon
+          :icon="layout === 'masonry' ? 'ph:squares-four-duotone' : 'ph:rows-duotone'"
+          width="20"
+          height="20"
+        />
       </button>
     </div>
 
-    <!-- Masonry grid -->
-    <div ref="gridRef" class="photo-grid">
-      <!-- Column sizer (hidden, for Masonry percentPosition) -->
+    <!-- Masonry layout -->
+    <div v-if="layout === 'masonry'" ref="gridRef" class="photo-grid">
       <div class="photo-sizer" />
-
       <div
-        v-for="(photo, index) in filteredPhotos"
+        v-for="(photo, i) in photos"
         :key="photo.id"
         class="photo-item"
-        @click="openLightbox(index)"
+        @click="openLight(i)"
       >
-        <div
-          class="photo-card group"
-          role="button"
-          tabindex="0"
-          :aria-label="`View ${photo.alt}`"
-          @keydown.enter="openLightbox(index)"
-          @keydown.space.prevent="openLightbox(index)"
-        >
-          <!-- Image -->
+        <div class="photo-card">
           <img
-            :src="photo.thumb"
+            :src="photo.src"
             :alt="photo.alt"
-            :width="photo.width"
-            :height="photo.height"
             loading="lazy"
             decoding="async"
             class="photo-img"
             :class="{ 'photo-img--loaded': loaded.has(photo.id) }"
             @load="onImageLoad(photo.id)"
           />
-
-          <!-- Hover overlay -->
-          <div class="photo-overlay" aria-hidden="true">
-            <div class="photo-meta">
-              <span v-if="photo.title" class="photo-title">{{
-                photo.title
-              }}</span>
-              <span v-if="photo.location" class="photo-location"
-                >📍 {{ photo.location }}</span
-              >
-            </div>
-          </div>
         </div>
       </div>
     </div>
 
-    <!-- Empty state -->
-    <div v-if="filteredPhotos.length === 0" class="py-20 text-center space-y-3">
-      <p class="text-sm text-gray-400">
-        {{ activeTag ? `No photos tagged "${activeTag}"` : "No photos yet." }}
+    <!-- Uniform grid layout -->
+    <div v-else class="photo-uniform-grid">
+      <div
+        v-for="(photo, i) in photos"
+        :key="photo.id"
+        class="photo-uniform-item"
+        @click="openLight(i)"
+      >
+        <img
+          :src="photo.src"
+          :alt="photo.alt"
+          loading="lazy"
+          decoding="async"
+          class="photo-img photo-img--cover"
+          :class="{ 'photo-img--loaded': loaded.has(photo.id) }"
+          @load="onImageLoad(photo.id)"
+        />
+      </div>
+    </div>
+
+    <div v-if="photos.length === 0" class="py-20 text-center">
+      <p class="text-sm text-gray-400 dark:text-zinc-500">
+        No photos yet. Drop images into <code>public/photos/</code> to get started.
       </p>
     </div>
 
     <!-- Lightbox -->
-    <PhotoLightbox ref="lightboxRef" :photos="filteredPhotos" />
+    <Teleport to="body">
+      <Transition name="light">
+        <div
+          v-if="lightIndex !== null"
+          class="lightbox"
+          @click.self="closeLight"
+          role="dialog"
+          aria-modal="true"
+        >
+          <!-- Close -->
+          <button class="light-btn light-btn--close" @click="closeLight" aria-label="Close">
+            <Icon icon="ph:x-bold" width="20" height="20" />
+          </button>
+
+          <!-- Prev -->
+          <button
+            v-if="photos.length > 1"
+            class="light-btn light-btn--prev"
+            @click="prev"
+            aria-label="Previous photo"
+          >
+            <Icon icon="ph:arrow-left-bold" width="20" height="20" />
+          </button>
+
+          <!-- Image -->
+          <div class="light-img-wrap" @click.self="closeLight">
+            <img
+              v-if="currentPhoto"
+              :src="currentPhoto.src"
+              :alt="currentPhoto.alt"
+              class="light-img"
+            />
+          </div>
+
+          <!-- Next -->
+          <button
+            v-if="photos.length > 1"
+            class="light-btn light-btn--next"
+            @click="next"
+            aria-label="Next photo"
+          >
+            <Icon icon="ph:arrow-right-bold" width="20" height="20" />
+          </button>
+
+          <!-- Counter -->
+          <div class="light-counter" v-if="photos.length > 1">
+            {{ lightIndex + 1 }} / {{ photos.length }}
+          </div>
+        </div>
+      </Transition>
+    </Teleport>
   </div>
 </template>
 
 <style scoped>
-/* ── Grid layout ── */
-.photo-grid {
-  position: relative;
-}
+
+.photo-grid { position: relative; }
 
 .photo-sizer,
-.photo-item {
-  width: calc(33.333% - 11px);
-}
+.photo-item { width: calc(33.333% - 8px); }
 
 @media (max-width: 1024px) {
-  .photo-sizer,
-  .photo-item {
-    width: calc(50% - 8px);
-  }
+  .photo-sizer, .photo-item { width: calc(50% - 6px); }
 }
-
 @media (max-width: 640px) {
-  .photo-sizer,
-  .photo-item {
-    width: 100%;
-  }
+  .photo-sizer, .photo-item { width: 100%; }
 }
 
 .photo-item {
-  margin-bottom: 16px;
+  display: block;
+  margin-bottom: 12px;
+  cursor: pointer;
 }
 
-/* ── Card ── */
-.photo-card {
-  position: relative;
-  cursor: pointer;
-  border-radius: 10px;
+.photo-card { overflow: hidden; background: #f4f5f7; }
+
+/* ── Uniform grid ── */
+.photo-uniform-grid {
+  display: grid;
+  grid-template-columns: repeat(3, 1fr);
+  gap: 12px;
+}
+@media (max-width: 1024px) {
+  .photo-uniform-grid { grid-template-columns: repeat(2, 1fr); }
+}
+@media (max-width: 640px) {
+  .photo-uniform-grid { grid-template-columns: 1fr; }
+}
+
+.photo-uniform-item {
+  display: block;
+  aspect-ratio: 4 / 3;
   overflow: hidden;
   background: #f4f5f7;
-  outline: none;
+  cursor: pointer;
 }
 
-.photo-card:focus-visible {
-  box-shadow: 0 0 0 3px rgba(107, 114, 128, 0.4);
-}
-
+/* ── Images ── */
 .photo-img {
   width: 100%;
   height: auto;
   display: block;
   opacity: 0;
-  transition: opacity 0.5s ease, transform 0.4s ease;
+  transition: opacity 0.4s ease, transform 0.3s ease;
 }
 
-.photo-img--loaded {
-  opacity: 1;
-}
+.photo-img--cover { height: 100%; object-fit: cover; }
+.photo-img--loaded { opacity: 1; }
 
-.photo-card:hover .photo-img {
-  transform: scale(1.03);
-}
+.photo-item:hover .photo-img,
+.photo-uniform-item:hover .photo-img { transform: scale(1.03); }
 
-/* ── Overlay ── */
-.photo-overlay {
-  position: absolute;
+
+.lightbox {
+  position: fixed;
   inset: 0;
-  background: linear-gradient(to top, rgba(0, 0, 0, 0.65) 0%, transparent 45%);
-  opacity: 0;
-  transition: opacity 0.3s ease;
+  z-index: 9999;
   display: flex;
-  align-items: flex-end;
+  align-items: center;
+  justify-content: center;
+  background: rgba(0, 0, 0, 0.85);
+  backdrop-filter: blur(20px) saturate(150%);
+  -webkit-backdrop-filter: blur(20px) saturate(150%);
   padding: 1rem;
 }
 
-.photo-card:hover .photo-overlay {
-  opacity: 1;
-}
-
-.photo-meta {
+.light-img-wrap {
+  max-width: min(90vw, 1200px);
+  max-height: 90vh;
   display: flex;
-  flex-direction: column;
-  gap: 0.125rem;
+  align-items: center;
+  justify-content: center;
 }
 
-.photo-title {
+.light-img {
+  max-width: 100%;
+  max-height: 90vh;
+  width: auto;
+  height: auto;
+  display: block;
+  object-fit: contain;
+  box-shadow: 0 32px 80px rgba(0, 0, 0, 0.6);
+}
+
+.light-btn {
+  position: fixed;
+  display: flex;
+  align-items: center;
+  justify-content: center;
+  width: 44px;
+  height: 44px;
+  border-radius: 50%;
+  background: rgba(255, 255, 255, 0.1);
+  border: 1px solid rgba(255, 255, 255, 0.15);
+  color: rgba(255, 255, 255, 0.85);
+  cursor: pointer;
+  transition: background 0.2s, color 0.2s, transform 0.2s;
+  -webkit-tap-highlight-color: transparent;
+}
+
+.light-btn:hover {
+  background: rgba(255, 255, 255, 0.2);
   color: #fff;
-  font-size: 0.9375rem;
-  font-weight: 600;
-  line-height: 1.3;
+  transform: scale(1.08);
 }
 
-.photo-location {
-  color: rgba(255, 255, 255, 0.75);
-  font-size: 0.8125rem;
+.light-btn--close { top: 1.25rem; right: 1.25rem; }
+.light-btn--prev  { left: 1.25rem; top: 50%; transform: translateY(-50%); }
+.light-btn--next  { right: 1.25rem; top: 50%; transform: translateY(-50%); }
+
+.light-btn--prev:hover { transform: translateY(-50%) scale(1.08); }
+.light-btn--next:hover { transform: translateY(-50%) scale(1.08); }
+
+.light-counter {
+  position: fixed;
+  bottom: 1.5rem;
+  left: 50%;
+  transform: translateX(-50%);
+  font-size: 0.75rem;
+  font-family: monospace;
+  color: rgba(255, 255, 255, 0.5);
+  letter-spacing: 0.1em;
 }
+
+/* ── Transition ── */
+.light-enter-active,
+.light-leave-active { transition: opacity 0.25s ease; }
+.light-enter-from,
+.light-leave-to { opacity: 0; }
 </style>

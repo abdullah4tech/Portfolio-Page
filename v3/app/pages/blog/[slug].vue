@@ -24,18 +24,67 @@ const formattedDate = computed(() => {
   });
 });
 
+const BASE_URL = "https://www.abdullahmustapha.xyz";
+
 useHead(
-  computed(() => ({
-    title: post.value
-      ? `${post.value.title} | Abdullah O. Mustapha`
-      : "Blog Post",
-    meta: [
-      { name: "description", content: post.value?.excerpt || "" },
-      { property: "og:title", content: post.value?.title || "" },
-      { property: "og:description", content: post.value?.excerpt || "" },
-      { property: "og:type", content: "article" },
-    ],
-  }))
+  computed(() => {
+    const p = post.value;
+    const url = p ? `${BASE_URL}/blog/${p.slug}` : BASE_URL;
+    const image = p?.cover || `${BASE_URL}/ogg_image.webp`;
+
+    return {
+      title: p ? `${p.title} | Abdullah O. Mustapha` : "Blog Post",
+      link: [{ rel: "canonical", href: url }],
+      meta: [
+        { name: "description",                    content: p?.excerpt || "" },
+        { name: "author",                         content: p?.author || "Abdullah O. Mustapha" },
+        { name: "robots",                         content: "index, follow" },
+        // Open Graph
+        { property: "og:type",                    content: "article" },
+        { property: "og:title",                   content: p?.title || "" },
+        { property: "og:description",             content: p?.excerpt || "" },
+        { property: "og:url",                     content: url },
+        { property: "og:image",                   content: image },
+        { property: "og:image:width",             content: "1200" },
+        { property: "og:image:height",            content: "630" },
+        // Article-specific OG
+        { property: "article:published_time",     content: p?.date || "" },
+        { property: "article:author",             content: "https://www.abdullahmustapha.xyz" },
+        ...(p?.tags?.map(t => ({ property: "article:tag", content: t })) ?? []),
+        // Twitter
+        { name: "twitter:card",                   content: "summary_large_image" },
+        { name: "twitter:title",                  content: p?.title || "" },
+        { name: "twitter:description",            content: p?.excerpt || "" },
+        { name: "twitter:image",                  content: image },
+        { name: "twitter:creator",                content: "@abdullah4tech_" },
+      ],
+      script: p ? [
+        {
+          type: "application/ld+json",
+          innerHTML: JSON.stringify({
+            "@context": "https://schema.org",
+            "@type": "BlogPosting",
+            headline: p.title,
+            description: p.excerpt,
+            url,
+            datePublished: p.date,
+            author: {
+              "@type": "Person",
+              name: p.author || "Abdullah O. Mustapha",
+              url: BASE_URL,
+            },
+            publisher: {
+              "@type": "Person",
+              name: "Abdullah O. Mustapha",
+              url: BASE_URL,
+            },
+            image,
+            keywords: p.tags?.join(", "),
+          }),
+        },
+      ] : [],
+    };
+  })
 );
 
 watch(
@@ -52,42 +101,7 @@ onMounted(() => init());
 </script>
 
 <template>
-  <main class="max-w-3xl mx-auto px-6 py-20 text-center">
-    <div
-      class="inline-flex items-center justify-center p-4 bg-gray-100 dark:bg-zinc-800 rounded-full mb-6"
-    >
-      <Icon
-        icon="ph:barricade-bold"
-        width="32"
-        height="32"
-        class="text-gray-600 dark:text-zinc-400"
-      />
-    </div>
-    <h1 class="text-3xl font-bold text-gray-900 dark:text-zinc-100 mb-4">
-      Work in Progress
-    </h1>
-    <p class="text-gray-600 dark:text-zinc-400 mb-8">
-      I'm currently crafting this page. Please check back soon!
-    </p>
-    <NuxtLink
-      to="/"
-      class="inline-flex items-center justify-center px-6 py-2 bg-gray-900 dark:bg-white text-white dark:text-zinc-900 rounded-lg hover:bg-gray-800 dark:hover:bg-zinc-200 transition-colors"
-    >
-      Go Home
-    </NuxtLink>
-  </main>
-  <template v-if="false">
-    <article v-if="post" class="py-10 sm:py-14">
-      <!-- Back link -->
-      <NuxtLink
-        to="/blog"
-        data-animate
-        class="inline-flex items-center gap-1.5 text-sm text-gray-400 dark:text-zinc-500 hover:text-gray-600 dark:hover:text-zinc-300 transition-colors mb-10 sm:mb-14"
-      >
-        <Icon icon="ph:arrow-left-duotone" width="14" height="14" />
-        Back to blog
-      </NuxtLink>
-
+  <article v-if="post" class="py-10 sm:py-14">
       <!-- Header -->
       <header class="space-y-4 mb-12 sm:mb-16">
         <div
@@ -139,7 +153,6 @@ onMounted(() => init());
     <div v-else class="py-20 text-center">
       <p class="text-sm text-gray-400 dark:text-zinc-500">Loading…</p>
     </div>
-  </template>
 </template>
 
 <style scoped>
@@ -238,23 +251,29 @@ onMounted(() => init());
   color: var(--text-muted);
 }
 .prose-blog :deep(pre) {
-  border-radius: 0.5rem;
+  border-radius: 0.75rem;
   margin: 2rem 0;
-  font-size: 0.875rem;
   overflow-x: auto;
+  border: 1px solid rgba(255, 255, 255, 0.06);
+}
+/* Shiki sets background + token colors via inline style — don't override them */
+.prose-blog :deep(.shiki) {
   padding: 1.25rem 1.5rem;
-  background: #1e1e21;
-}
-/* Shiki — always use dark theme */
-.prose-blog :deep(.shiki),
-.prose-blog :deep(.shiki span) {
-  color: var(--shiki-dark) !important;
-  background-color: transparent !important;
-}
-.prose-blog :deep(pre code) {
-  font-family: "Fira Code", "SF Mono", monospace;
+  border-radius: 0.75rem;
   font-size: 0.8125rem;
   line-height: 1.7;
+  font-family: "Fira Code", "SF Mono", monospace;
+}
+.prose-blog :deep(.shiki code) {
+  font-family: inherit;
+  font-size: inherit;
+  line-height: inherit;
+  background: none;
+  padding: 0;
+}
+.prose-blog :deep(.shiki .line) {
+  display: block;
+  min-height: 1.5em;
 }
 .prose-blog :deep(:not(pre) > code) {
   font-size: 0.875rem;
@@ -270,8 +289,8 @@ onMounted(() => init());
   border-top: 1px solid var(--border-soft);
 }
 .prose-blog :deep(img) {
-  border-radius: 0.5rem;
   margin: 2rem 0;
+  border-radius: 0;
 }
 .prose-blog :deep(table) {
   width: 100%;

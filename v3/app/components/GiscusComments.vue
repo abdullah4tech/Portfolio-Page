@@ -3,9 +3,16 @@ import Giscus from "@giscus/vue";
 import { computed } from "vue";
 
 const colorMode = useColorMode();
+const route = useRoute();
+
 const giscusTheme = computed(() =>
   colorMode.value === "dark" ? "dark" : "light"
 );
+
+const REPO        = "abdullah4tech/Portfolio-Page";
+const REPO_ID     = "R_kgDOLw67Eg";
+const CATEGORY    = "General";
+const CATEGORY_ID = "DIC_kwDOLw67Es4C6quh";
 </script>
 
 <template>
@@ -17,13 +24,14 @@ const giscusTheme = computed(() =>
     </h2>
 
     <Giscus
+      :key="route.path"
       id="comments"
-      repo="abdullah4tech/abdullahmustapha.xyz"
-      repo-id=""
-      category="Blog Comments"
-      category-id=""
+      :repo="REPO"
+      :repo-id="REPO_ID"
+      :category="CATEGORY"
+      :category-id="CATEGORY_ID"
       mapping="pathname"
-      strict="0"
+      strict="1"
       reactions-enabled="1"
       emit-metadata="0"
       input-position="top"
@@ -33,7 +41,7 @@ const giscusTheme = computed(() =>
     />
 
     <p class="mt-6 text-xs text-gray-300 dark:text-zinc-600">
-      Comments are powered by
+      Comments powered by
       <a
         href="https://giscus.app"
         target="_blank"

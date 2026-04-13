@@ -1,6 +1,5 @@
 <script setup lang="ts">
 import { Icon } from "@iconify/vue";
-import { photos } from "~/data/photos";
 
 useHead({
   title: "Photos | Abdullah O. Mustapha",
@@ -15,32 +14,7 @@ useHead({
 </script>
 
 <template>
-  <main class="max-w-3xl mx-auto px-6 py-20 text-center">
-    <div
-      class="inline-flex items-center justify-center p-4 bg-gray-100 dark:bg-zinc-800 rounded-full mb-6"
-    >
-      <Icon
-        icon="ph:barricade-bold"
-        width="32"
-        height="32"
-        class="text-gray-600 dark:text-zinc-400"
-      />
-    </div>
-    <h1 class="text-3xl font-bold text-gray-900 dark:text-zinc-100 mb-4">
-      Work in Progress
-    </h1>
-    <p class="text-gray-600 dark:text-zinc-400 mb-8">
-      I'm currently crafting this page. Please check back soon!
-    </p>
-    <NuxtLink
-      to="/"
-      class="inline-flex items-center justify-center px-6 py-2 bg-gray-900 dark:bg-white text-white dark:text-zinc-900 rounded-lg hover:bg-gray-800 dark:hover:bg-zinc-200 transition-colors"
-    >
-      Go Home
-    </NuxtLink>
-  </main>
-  <template v-if="false">
-    <div class="space-y-14 sm:space-y-16 py-10 sm:py-14">
+  <div class="space-y-14 sm:space-y-16 py-10 sm:py-14">
       <!-- Header -->
       <header class="space-y-5">
         <h1
@@ -61,7 +35,7 @@ useHead({
 
       <!-- Gallery -->
       <section data-animate data-animate-delay="2">
-        <PhotoGallery :photos="photos" />
+        <PhotoGallery />
       </section>
 
       <!-- Footer -->
@@ -72,6 +46,5 @@ useHead({
           All photos © Abdullah O. Mustapha unless stated otherwise.
         </p>
       </footer>
-    </div>
-  </template>
+  </div>
 </template>

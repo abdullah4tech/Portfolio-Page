@@ -14,6 +14,7 @@ export default defineNuxtConfig({
     // Prerender all pages for maximum performance (sub-second load)
     "/": { prerender: true },
     "/projects": { prerender: true },
+    "/projects/**": { prerender: true },
     "/blog": { prerender: true },
     "/photos": { prerender: true },
     "/talks": { prerender: true },
@@ -27,10 +28,7 @@ export default defineNuxtConfig({
     plugins: [tailwindcss() as any],
     optimizeDeps: {
       include: [
-        "gsap",
-        "gsap/ScrollTrigger",
         "@iconify/vue",
-        "lenis",
         "masonry-layout",
         "imagesloaded",
         "photoswipe",
