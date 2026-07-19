@@ -274,6 +274,17 @@
       margin-top: 0.5rem;
     }
 
+    .modal__status {
+      margin-top: 0.75rem;
+      font-size: 0.9rem;
+      color: #c2410c;
+      margin-bottom: 0;
+      display: none;
+    }
+    .modal__status.is-visible {
+      display: block;
+    }
+
     @media (max-width: 640px) {
       body { padding: 8vh 5vw 6vh; font-size: 17px; }
       h1 { font-size: clamp(2.2rem, 10vw, 4rem); margin-bottom: 1rem; }
@@ -355,6 +366,7 @@
           <input type="email" id="email-sub" name="email" placeholder="you@example.com" required />
           <button type="submit" class="modal__btn">Subscribe</button>
         </form>
+        <p class="modal__status" id="modal-status" aria-live="polite"></p>
       </div>
 
       <div class="modal__success" id="modal-success" aria-live="polite">
@@ -454,12 +466,16 @@
       const form = document.getElementById('newsletter-form');
       const content = document.getElementById('modal-content');
       const success = document.getElementById('modal-success');
+      const status = document.getElementById('modal-status');
+      const submitBtn = form.querySelector('button[type="submit"]');
 
       function openModal() {
         modal.classList.add('is-open');
         modal.setAttribute('aria-hidden', 'false');
         content.classList.remove('is-hidden');
         success.classList.remove('is-visible');
+        status.classList.remove('is-visible');
+        status.textContent = '';
         form.reset();
         modal.querySelector('input').focus();
       }
@@ -474,6 +490,11 @@
         content.classList.add('is-hidden');
         success.classList.add('is-visible');
         successCloseBtn.focus();
+      }
+
+      function showError(message) {
+        status.textContent = message;
+        status.classList.add('is-visible');
       }
 
       openBtn.addEventListener('click', (e) => {
@@ -494,9 +515,37 @@
         }
       });
 
-      form.addEventListener('submit', (e) => {
+      form.addEventListener('submit', async (e) => {
         e.preventDefault();
-        showSuccess();
+        status.classList.remove('is-visible');
+        status.textContent = '';
+
+        const email = form.email.value.trim();
+        const originalText = submitBtn.textContent;
+        submitBtn.textContent = 'Subscribing...';
+        submitBtn.disabled = true;
+
+        try {
+          const res = await fetch('/api/subscribe', {
+            method: 'POST',
+            headers: { 'Content-Type': 'application/json' },
+            body: JSON.stringify({ email }),
+          });
+
+          const data = await res.json();
+
+          if (res.ok && data.success) {
+            showSuccess();
+            form.reset();
+          } else {
+            showError(data.error || 'Could not subscribe. Try again.');
+          }
+        } catch (err) {
+          showError('Network error. Check your connection and try again.');
+        } finally {
+          submitBtn.textContent = originalText;
+          submitBtn.disabled = false;
+        }
       });
     })();
   </script>
